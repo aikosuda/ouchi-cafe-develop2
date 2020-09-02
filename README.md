@@ -1,24 +1,33 @@
-# README
+# おうちcafe
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+市販のコーヒー豆やコーヒー飲料のレビュー、コーヒーアレンジレシピの投稿等の、コーヒー好きのための情報共有サイト
 
-Things you may want to cover:
+### サイトテーマ
+家でコーヒーを楽しむための、あらゆる情報を共有できるSNSサービス
 
-* Ruby version
+### テーマを選んだ理由
+私自身コーヒーが好きで、また最近は家で飲むことがほとんどになっている中で、もっと家でのコーヒーを楽しむための情報交換ができる場があると良いのになと思い、今回のテーマを選びました。
 
-* System dependencies
+またコロナの影響もあり、家で過ごす時間が多くなっている中で、おうち時間をもっと充実したものに、もっとリラックスできるものにするための一助になれば良いと思ったのも、テーマを選んだ理由の一つです。
 
-* Configuration
+### ターゲットユーザ
+・コーヒーが好きな人。
+・これから家でもワンランク上のコーヒーの楽しみ方をしたいと考えている人。
 
-* Database creation
+### 主な利用シーン
+・レビューを参考にしてコーヒー関連商品を買う時に
+・コーヒー好きの人と繋がりたい時に
+・自分が飲んだコーヒー、試したアレンジ方法の覚書用のメモとして
 
-* Database initialization
+## 設計書
 
-* How to run the test suite
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1bl_0I7NZrgVg5OzRSKElI6Sm1q7-NjQZvVZ0OmkCt9o/edit?usp=sharing
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- 仮想環境：Vagrant,VirtualBox
