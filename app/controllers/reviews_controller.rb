@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+    @review_categories = ReviewCategory.all
   end
 
   def index

@@ -1,2 +1,43 @@
-<h1>Reviews#show</h1>
-<p>Find me in app/views/reviews/show.html.erb</p>
+<div class="row">
+	<div class="col-xs-3">
+		<div class="sidebar" style="width: 20rem;">
+			<div class="genre-title text-center">CATEGORY</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item text-center">
+					<%= link_to "全カテゴリー", reviews_path, :style => "color:black" %>
+				</li>
+				<% @review_categories.each do |category| %>
+					<li class="list-group-item text-center">
+						<%= link_to category.name, search_reviews_path(name: "#{category.name}"),
+						method: :post, :style =>"color:black" %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+
+	<div class="col-xs-9">
+		<h3><%= @review.name %>のレビュー</h3>
+		<div>
+			<%= attachment_image_tag @review, :image, size: '400x300', id: "file-preview",fallback: "no_image.png",size:'400x300' %>
+		</div>
+		<div><%= @review.name %></div>
+		<div><%= @review.user.name %></div>
+		<div><%= @review.updated_at.strftime("%Y-%m-%d %H:%M") %></div>
+		<div id="star-rate" data-score="<%= @review.rate %>"></div>
+		<div><%= @review.content %></div>
+	</div>
+</div>
+
+<script>
+	$('#star-rate').raty({
+        readOnly: true,
+        size: 36,
+   		starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+    	score: function() {
+     	 return $(this).attr('data-score');
+    	},
+    });
+</script>
