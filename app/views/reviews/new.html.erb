@@ -1,2 +1,75 @@
-<h1>Reviews#new</h1>
-<p>Find me in app/views/reviews/new.html.erb</p>
+<div class="row">
+	<h3>レビュー新規作成</h3>
+	<%= form_for(@review) do |f| %>
+
+		<div class="col-xs-5">
+			<div class="product-img">
+				<%= attachment_image_tag @review, :image, size: '400x300', id: "file-preview",fallback: "no_image.png",size:'400x300' %>
+			</div>
+			<div class="product-new-form">
+				<%= f.attachment_field :image, id: "product_img" %>
+			</div>
+		</div>
+
+		<div class="col-xs-5">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>商品名</th>
+						<td><%= f.text_field :name, class: "form-control" %></td>
+					</tr>
+					<tr>
+						<th>カテゴリー選択</th>
+						<td><%= f.collection_select :review_category_id, ReviewCategory.all, :id, :name, include_blank: "--選択してください--" %></td>
+					</tr>
+					<tr>
+						<th>評価</th>
+						<td id="star" class="form-control" %>
+							<%= f.label :rate %>
+							<%= f.hidden_field :rate, id: :review_rate %>
+						</td>
+					</tr>
+					<tr>
+						<th>レビュー内容</th>
+						<td><%= f.text_area :content, class: "form-control" %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-xs-2" style="padding-bottom: 100px;padding-left: 1000px;">
+	    		<%= f.submit '投稿する', class: "btn btn-primary btn-new-register btn-lg" %>
+	    </div>
+	<% end %>
+</div>
+
+<%# 画像をプレビュー表示する %>
+<script type="text/javascript">
+	$(function() {
+	    function readURL(input) {
+	        if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	    		$('#file-preview').attr('src', e.target.result);
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+	$("#product_img").change(function(){
+	    readURL(this);
+		});
+	});
+</script>
+
+<%# 星評価 %>
+<script type="text/javascript">
+	$('#star').raty({
+   		size: 36,
+   		starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+   		scoreName: 'review[rate]', 
+   		half: true, 
+ 	});
+</script>
+
+
