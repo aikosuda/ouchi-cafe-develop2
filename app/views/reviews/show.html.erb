@@ -8,7 +8,7 @@
 				</li>
 				<% @review_categories.each do |category| %>
 					<li class="list-group-item text-center">
-						<%= link_to category.name, search_reviews_path(name: "#{category.name}"),
+						<%= link_to category.name, category_reviews_path(name: "#{category.name}"),
 						method: :post, :style =>"color:black" %>
 					</li>
 				<% end %>
@@ -21,11 +21,15 @@
 		<div>
 			<%= attachment_image_tag @review, :image, size: '400x300', id: "file-preview",fallback: "no_image.png",size:'400x300' %>
 		</div>
-		<div><%= @review.name %></div>
-		<div><%= @review.user.name %></div>
+		<div><span>商品名：<%= @review.name %></span></div>
+		<div><span>ユーザー名：<%= @review.user.name %> さん</span></div>
 		<div><%= @review.updated_at.strftime("%Y-%m-%d %H:%M") %></div>
 		<div id="star-rate" data-score="<%= @review.rate %>"></div>
 		<div><%= @review.content %></div>
+		<% if @review.user_id == current_user.id %>
+			<%= link_to "編集", edit_review_path(@review), class: "btn btn-primary" %>
+			<%= link_to "削除", review_path(@review), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+		<% end %>
 	</div>
 </div>
 
