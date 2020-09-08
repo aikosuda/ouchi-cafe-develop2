@@ -10,4 +10,14 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   validates :name, presence: true
+
+
+  #会員名で検索
+  def self.search(search, user_or_product)
+    if user_or_product == "1"
+      self.where(['name LIKE ?', "%#{search}%"])
+    else
+       self.all
+    end
+  end
 end

@@ -26,22 +26,49 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find(params[:id])
   end
 
   def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      redirect_to review_path(@review), notice: "レビューを更新しました"
+    else
+      render  :edit
+    end
   end
 
   def destroy
+    @review = Review.find(params[:id])
+    if @review.destroy
+      redirect_to reviews_path, notice: "レビューを削除しました"
+    else
+      render :show
+    end
   end
 
   def select
+    @review_categories = ReviewCategory.all
   end
 
-  def search
+  def category
     @review_category = ReviewCategory.find_by(name: params[:name])
     @reviews = Review.where(review_category_id: @review_category.id).page(params[:page]).per(10)
     @review_categories = ReviewCategory.all
     render :index
+  end
+
+  def search
+    @user_or_product = params[:option]
+    if @user_or_product == "1"
+        @users = User.search(params[:search], @user_or_product)
+        @users.each do |user|
+          @user_reviews = Review.where(user_id: user.id)
+        end
+    else
+        @reviews = Review.search(params[:search], @user_or_product)
+    end
+    @search = params[:search]
   end
 
   private

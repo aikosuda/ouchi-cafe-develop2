@@ -14,10 +14,11 @@ Rails.application.routes.draw do
   resources :reviews do
     collection do
       #カテゴリー検索用
-      post 'search'
+      post 'category'
+      get 'select'
+      get 'search'
     end
   end
-  get 'reviews/select' => 'reviews#select'
   resources :blogs
   get 'blogs/select' => 'blogs#select'
   resource :favorites, only: [:create, :destroy]

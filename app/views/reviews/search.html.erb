@@ -1,0 +1,49 @@
+<% if @user_or_product == "1" %>
+    <h2>ユーザー名に '<%= @search %>' を含むレビュー一覧</h2>
+    <ul>
+        <% @user_reviews.each do |review| %>
+            <li class="list-group-item text-center">
+                <%= link_to review_path(review) do %>
+                    <div>
+                        <%= attachment_image_tag review, :image, size: "120x90", fallback: 'no_image.png',size: "120x90" %>
+                    </div>
+                    <span>商品名：<%= review.name %></span><br>
+                    <span>ユーザー名：<%= review.user.name %></span>
+                <% end %>
+                <div id="star-rate" data-score="<%= review.rate %>"></div>
+            </li>
+        <% end %>
+    </ul>
+ 
+<% elsif @user_or_product == "2" %>
+    <h2>商品名に '<%= @search %>' を含むレビュー一覧</h2>    
+    <ul>
+        <% @reviews.each do |review| %>
+            <li class="list-group-item text-center">
+                <%= link_to review_path(review) do %>
+                    <div>
+                        <%= attachment_image_tag review, :image, size: "120x90", fallback: 'no_image.png',size: "120x90" %>
+                    </div>
+                    <span>商品名：<%= review.name %></span><br>
+                    <span>ユーザー名：<%= review.user.name %></span>
+                <% end %>
+                <div id="star-rate" data-score="<%= review.rate %>"></div>
+            </li>
+        <% end %>
+    </ul>
+<% else %>
+<% end %>
+
+<%# 星評価 %> 
+<script>
+    $('#star-rate').raty({
+        readOnly: true,
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        score: function() {
+         return $(this).attr('data-score');
+        },
+    });
+</script>

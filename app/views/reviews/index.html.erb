@@ -8,7 +8,7 @@
 				</li>
 				<% @review_categories.each do |category| %>
 					<li class="list-group-item text-center">
-						<%= link_to category.name, search_reviews_path(name: "#{category.name}"),
+						<%= link_to category.name, category_reviews_path(name: "#{category.name}"),
 						method: :post, :style =>"color:black" %>
 					</li>
 				<% end %>
@@ -35,7 +35,6 @@
 						<%= review.name %>
 					</p>
           		<% end %>
-          		<%# 星評価 %> 
 				<div id="star-rate" data-score="<%= review.rate %>"></div>
           	</div>
         <% end %>
@@ -43,6 +42,7 @@
 	</div>
 </div>
 
+<%# 星評価 %> 
 <script>
 	$('#star-rate').raty({
         readOnly: true,
