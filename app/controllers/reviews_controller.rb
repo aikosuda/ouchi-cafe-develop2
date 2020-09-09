@@ -16,8 +16,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.user_id = current_user.id
+    @review = current_user.reviews.new(review_params)
     if @review.save
       redirect_to review_path(@review), notice: "レビューを投稿しました"
     else
