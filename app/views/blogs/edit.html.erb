@@ -1,2 +1,17 @@
-<h1>Blogs#edit</h1>
-<p>Find me in app/views/blogs/edit.html.erb</p>
+<div class="row">
+	<h3>ブログ記事編集</h3>
+	<div class="col-xs-6 col-xs-offset-3">
+		<%= form_with(model: @blog, url: blog_path, local: true) do |f| %>
+			<div class="field">
+				<%= f.label :title %>
+				<%= f.text_field :title %><br>
+				<%= f.label :content %>
+				<%= f.text_area :content %><br>
+					<%= "スペースを入力することで複数のタグを付けることができます" %>
+					<%= "例：料理　豆知識　日記" %>
+					<%= f.text_field :name, value: @tag_list %>
+				<%= f.submit "記事作成" %>
+			</div>
+		<% end %>
+	</div>
+</div>

@@ -1,2 +1,16 @@
-<h1>Blogs#show</h1>
-<p>Find me in app/views/blogs/show.html.erb</p>
+<div class="row">
+	<h3>ブログ詳細</h3>
+	<p><%= @blog.title %></p>
+	<p><%= @blog.content %></p><br>
+	<%= "タグ：" %>
+	<% @tag_list.each do |list| %>
+		<li class="list-group-item text-center">
+			<%= link_to list.name, tag_blogs_path(name: "#{list.name}"), method: :post, :style =>"color:black" %>
+		</li>
+	<% end %>
+	<% if @blog.user == current_user %>
+		<%= link_to "編集", edit_blog_path(@blog), class: "btn btn-primary" %>
+		<%= link_to "削除", blog_path(@blog), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+	<% end %>
+	<%= link_to 'ホーム', root_path %>
+</div>
