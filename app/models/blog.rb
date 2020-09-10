@@ -28,4 +28,9 @@ class Blog < ApplicationRecord
 		end
 	end
 
+	#タイトル名で検索
+	def self.search_blog(search)
+      	self.where(['title LIKE ?', "%#{search}%"])
+  	end
+
 end

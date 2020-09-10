@@ -12,11 +12,7 @@ class Review < ApplicationRecord
 	}, presence: true
 
 	#商品名で検索
-	def self.search(search, user_or_product)
-    	if user_or_product == "2"
-      		self.where(['name LIKE ?', "%#{search}%"])
-    	else
-       		self.all
-    	end
+	def self.search_review(search)
+    	self.where(['name LIKE ?', "%#{search}%"])
   	end
 end
