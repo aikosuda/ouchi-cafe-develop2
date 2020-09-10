@@ -2,6 +2,7 @@
 	<h3>ブログ詳細</h3>
 	<p><%= @blog.title %></p>
 	<p><%= @blog.content %></p><br>
+	<i class="fa fa-calendar"></i><%= @blog.updated_at.strftime("%Y-%m-%d") %>
 	<%= "タグ：" %>
 	<% @tag_list.each do |list| %>
 		<li class="list-group-item text-center">
@@ -13,4 +14,43 @@
 		<%= link_to "削除", blog_path(@blog), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
 	<% end %>
 	<%= link_to 'ホーム', root_path %>
+
+	<ul>
+		<% if @blog.favorited_by?(current_user) %>
+			<li>
+  				<%= link_to blog_favorites_path(@blog), method: :delete do %>
+    				<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+    				<%= @blog.favorites.count %> いいね
+  				<% end %>
+			</li>
+		<% else %>
+			<li>
+  				<%= link_to blog_favorites_path(@blog), method: :post do %>
+   					<i class="fa fa-heart" aria-hidden="true"></i>
+    				<%= @blog.favorites.count %> いいね
+  				<% end %>
+			</li>
+		<% end %>
+	</ul>
+
+
+
+	<%= form_for [@blog, @blog_comment] do |f| %>
+		<div class="col-xs-8 col-xs-offset-2">
+			<%= f.text_area :comment, row:'5', class: "form-control",placeholder: "コメントをここに" %>
+		</div>
+		<%= f.submit "送信", class: "btn btn-base-1 mt-20 pull-right" %>
+	<% end %>
+
+	<% @blog_comments.each do |blog_comment| %>
+		<div class="col-xs-8 col-xs-offset-2">
+			<%= blog_comment.updated_at.strftime("%Y-%m-%d") %>
+			<%= blog_comment.user.name %>
+			<%= blog_comment.comment %>
+			<% if blog_comment.user == current_user %>
+				<%= link_to "削除", blog_blog_comment_path(blog_comment.blog, blog_comment), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+			<% end %>
+		</div>
+	<% end %>
+
 </div>

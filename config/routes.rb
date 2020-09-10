@@ -15,23 +15,27 @@ Rails.application.routes.draw do
     collection do
       #カテゴリー検索用
       post 'category'
-      #検索画面表示
+      #レビュー検索ページ
       get 'select'
-      #検索結果表示
+      #レビュー検索結果ページ
       get 'search'
     end
   end
 
   resources :blogs do
     collection do
+      #タグ検索用
       post 'tag'
+      #ブログ検索ページ
       get 'select'
+      #ブログ検索結果ページ
       get 'search'
     end
-  end
 
-  resource :favorites, only: [:create, :destroy]
-  resources :blog_comments, only: [:show, :create, :destroy]
+    resource :favorites, only: [:create, :destroy]
+    resources :blog_comments, only: [:create, :destroy]
+    
+  end
 
 
 
