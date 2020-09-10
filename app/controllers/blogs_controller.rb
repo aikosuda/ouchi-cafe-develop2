@@ -2,6 +2,8 @@ class BlogsController < ApplicationController
   def show
     @blog = Blog.find(params[:id])
     @tag_list = @blog.tags
+    @blog_comment = BlogComment.new
+    @blog_comments = BlogComment.where(blog_id: @blog.id)
   end
 
   def index

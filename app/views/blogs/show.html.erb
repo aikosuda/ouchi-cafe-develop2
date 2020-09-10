@@ -13,4 +13,23 @@
 		<%= link_to "削除", blog_path(@blog), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
 	<% end %>
 	<%= link_to 'ホーム', root_path %>
+
+	<%= form_for [@blog, @blog_comment] do |f| %>
+		<div class="col-xs-8 col-xs-offset-2">
+			<%= f.text_area :comment, row:'5', class: "form-control",placeholder: "コメントをここに" %>
+		</div>
+		<%= f.submit "送信", class: "btn btn-base-1 mt-20 pull-right" %>
+	<% end %>
+
+	<% @blog_comments.each do |blog_comment| %>
+		<div class="col-xs-8 col-xs-offset-2">
+			<%= blog_comment.updated_at.strftime("%Y-%m-%d %H:%M") %>
+			<%= blog_comment.user.name %>
+			<%= blog_comment.comment %>
+			<% if blog_comment.user == current_user %>
+				<%= link_to "削除", blog_blog_comment_path(blog_comment.blog, blog_comment), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+			<% end %>
+		</div>
+	<% end %>
+
 </div>
