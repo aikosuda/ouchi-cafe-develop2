@@ -12,12 +12,14 @@ class User < ApplicationRecord
   validates :name, presence: true
 
 
-  #会員名で検索
-  def self.search(search, user_or_product)
-    if user_or_product == "1"
-      self.where(['name LIKE ?', "%#{search}%"])
-    else
-       self.all
-    end
+  #会員名でレビュー検索
+  def self.search_review(search)
+    self.where(['name LIKE ?', "%#{search}%"])
   end
+
+  #会員名でブログ検索
+  def self.search_blog(search)
+    self.where(['name LIKE ?', "%#{search}%"])
+  end
+
 end

@@ -1,38 +1,60 @@
-<% if @user_or_product == "1" %>
-    <h2>ユーザー名に '<%= @search %>' を含むレビュー一覧</h2>
-    <ul>
-        <% @user_reviews.each do |review| %>
-            <li class="list-group-item text-center">
-                <%= link_to review_path(review) do %>
-                    <div>
-                        <%= attachment_image_tag review, :image, size: "120x90", fallback: 'no_image.png',size: "120x90" %>
-                    </div>
-                    <span>商品名：<%= review.name %></span><br>
-                    <span>ユーザー名：<%= review.user.name %></span>
+<div class="row">
+    <div>キーワードで検索</div>
+
+        <nav class="navbar navbar-left">
+            <%= form_tag(search_reviews_path, method: :get ) do %>
+                <%= select_tag(:option, options_for_select([["ユーザー名", "1"],["商品名", "2"]])) %>
+                <%= text_field_tag :search %>
+                <button name='button' type='submit'>
+                    <i class="fa fa-search"></i>
+                </button>
+            <% end %>
+        </nav>
+
+    <% if @user_or_product == "1" %>
+        <h2>ユーザー名に '<%= @search %>' を含むレビュー一覧</h2>
+        <% if @user_reviews.blank? %>
+            <p>検索結果が見つかりません</p>
+        <% else %>
+            <ul>
+                <% @user_reviews.each do |review| %>
+                    <li class="list-group-item text-center">
+                        <%= link_to review_path(review) do %>
+                            <div>
+                                <%= attachment_image_tag review, :image, size: "120x90", fallback: 'no_image.png',size: "120x90" %>
+                            </div>
+                            <span>商品名：<%= review.name %></span><br>
+                            <span>ユーザー名：<%= review.user.name %></span>
+                        <% end %>
+                        <div id="star-rate" data-score="<%= review.rate %>"></div>
+                    </li>
                 <% end %>
-                <div id="star-rate" data-score="<%= review.rate %>"></div>
-            </li>
+            </ul>
         <% end %>
-    </ul>
  
-<% elsif @user_or_product == "2" %>
-    <h2>商品名に '<%= @search %>' を含むレビュー一覧</h2>    
-    <ul>
-        <% @reviews.each do |review| %>
-            <li class="list-group-item text-center">
-                <%= link_to review_path(review) do %>
-                    <div>
-                        <%= attachment_image_tag review, :image, size: "120x90", fallback: 'no_image.png',size: "120x90" %>
-                    </div>
-                    <span>商品名：<%= review.name %></span><br>
-                    <span>ユーザー名：<%= review.user.name %></span>
+    <% elsif @user_or_product == "2" %>
+        <h2>商品名に '<%= @search %>' を含むレビュー一覧</h2>
+        <% if @reviews.blank? %>
+            <p>検索結果が見つかりません</p>
+        <% else %>    
+            <ul>
+                <% @reviews.each do |review| %>
+                    <li class="list-group-item text-center">
+                        <%= link_to review_path(review) do %>
+                            <div>
+                                <%= attachment_image_tag review, :image, size: "120x90", fallback: 'no_image.png',size: "120x90" %>
+                            </div>
+                            <span>商品名：<%= review.name %></span><br>
+                            <span>ユーザー名：<%= review.user.name %></span>
+                        <% end %>
+                        <div id="star-rate" data-score="<%= review.rate %>"></div>
+                    </li>
                 <% end %>
-                <div id="star-rate" data-score="<%= review.rate %>"></div>
-            </li>
+            </ul>
         <% end %>
-    </ul>
-<% else %>
-<% end %>
+    <% else %>
+    <% end %>
+</div>
 
 <%# 星評価 %> 
 <script>

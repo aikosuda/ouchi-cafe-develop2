@@ -60,12 +60,12 @@ class ReviewsController < ApplicationController
   def search
     @user_or_product = params[:option]
     if @user_or_product == "1"
-        @users = User.search(params[:search], @user_or_product)
+        @users = User.search_review(params[:search])
         @users.each do |user|
           @user_reviews = Review.where(user_id: user.id)
         end
     else
-        @reviews = Review.search(params[:search], @user_or_product)
+        @reviews = Review.search_review(params[:search])
     end
     @search = params[:search]
   end

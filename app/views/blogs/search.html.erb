@@ -1,0 +1,55 @@
+<div class="row">
+    <div>キーワードで検索</div>
+    <nav class="navbar navbar-left">
+        <%= form_tag(search_blogs_path, method: :get ) do %>
+            <%= select_tag(:option, options_for_select([["ユーザー名", "1"],["ブログタイトル", "2"]])) %>
+            <%= text_field_tag :search %>
+            <button name='button' type='submit'>
+                <i class="fa fa-search"></i>
+            </button>
+        <% end %>
+    </nav>
+
+
+    <% if @user_or_title == "1" %>
+        <h2>ユーザー名に '<%= @search %>' を含むブログ一覧</h2>
+        <% if @user_blogs.blank? %>
+            <p>検索結果が見つかりません</p>
+        <% else %>
+            <ul>
+                <% @user_blogs.each do |blog| %>
+                    <li class="list-group-item text-center">
+                        <%= link_to blog_path(blog) do %>
+                            <div>
+                                <%= attachment_image_tag blog, :image, size: "120x90", fallback: 'no_image.png',size: "120x90" %>
+                            </div>
+                            <span>タイトル：<%= blog.title %></span><br>
+                            <span>ユーザー名：<%= blog.user.name %></span>
+                        <% end %>
+                    </li>
+                <% end %>
+            </ul>
+        <% end %>
+ 
+    <% elsif @user_or_title == "2" %>
+        <h2>ブログタイトルに '<%= @search %>' を含むブログ一覧</h2>
+        <% if @blogs.blank? %>
+            <p>検索結果が見つかりません</p>
+        <% else %>    
+            <ul>
+                <% @blogs.each do |blog| %>
+                    <li class="list-group-item text-center">
+                        <%= link_to blog_path(blog) do %>
+                            <div>
+                                <%= attachment_image_tag blog, :image, size: "120x90", fallback: 'no_image.png',size: "120x90" %>
+                            </div>
+                            <span>タイトル：<%= blog.title %></span><br>
+                            <span>ユーザー名：<%= blog.user.name %></span>
+                        <% end %>
+                    </li>
+                <% end %>
+            </ul>
+        <% end %>
+    <% else %>
+    <% end %>
+</div>
