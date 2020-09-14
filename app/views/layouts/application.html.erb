@@ -10,7 +10,43 @@
   </head>
 
   <body>
-    <div class="container">
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+
+        <nav class="nav navbar-nav navbar-left">
+           <span>
+            <%= link_to "おうちcafe", root_path %>
+          </span>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><%= link_to ' About', home_about_path, class: 'glyphicon glyphicon-link about' %></li>
+              <li><%= link_to ' Review', select_reviews_path, class: 'glyphicon glyphicon-pencil review' %></li>
+              <li><%= link_to ' Blog', select_blogs_path, class: 'glyphicon glyphicon-bookmark blog' %></li>
+              <li><%= link_to ' MyPage', user_my_page_path(current_user), class: 'glyphicon glyphicon-user mypage' %></li>
+              <li><%= link_to ' logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
+            <% else %>
+              <li><%= link_to ' About', home_about_path, class: 'glyphicon glyphicon-link about' %></li>
+              <li><%= link_to ' Review', select_reviews_path, class: 'glyphicon glyphicon-pencil review' %></li>
+              <li><%= link_to ' Blog', select_blogs_path, class: 'glyphicon glyphicon-bookmark blog' %></li>
+              <li><%= link_to ' sign up', new_user_registration_path, class: 'glyphicon glyphicon-edit sign_up' %></li>
+              <li><%= link_to ' login', new_user_session_path, class: 'glyphicon glyphicon-log-in sign_in' %></li>
+            <% end %>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+
+    <div class="container" style="margin-top: 100px;">
+      <%#　flashメッセージ表示場所 %>
+      <% if flash[:notice] %>
+        <div id="flash" class="alert alert-success" role="alert" style="position: absolute; top: 60px; left: 150px;">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
       <%= yield %>
     </div>
   </body>
