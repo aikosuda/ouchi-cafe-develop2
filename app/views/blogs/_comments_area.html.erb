@@ -1,0 +1,8 @@
+<div class="col-xs-8 col-xs-offset-2" id="comment-<%= blog_comment.id %>">
+	<%= blog_comment.updated_at.strftime("%Y-%m-%d") %>
+	<%= blog_comment.user.name %>
+	<%= blog_comment.comment %>
+	<% if blog_comment.user == current_user %>
+		<%= link_to "削除", blog_blog_comment_path(blog_comment.blog, blog_comment), method: :delete, remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+	<% end %>
+</div>
