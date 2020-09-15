@@ -1,26 +1,18 @@
 class BlogCommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
   	@blog = Blog.find(params[:blog_id])
-  	@comment = current_user.blog_comments.new(blog_comment_params)
-  	@comment.blog_id = @blog.id
-  	if @comment.save
-  		redirect_to request.referer, notice: "コメントを送信しました"
-  	else
-    @tag_list = @blog.tags
-    @blog_comments = BlogComment.where(blog_id: @blog.id)
-  	render 'blogs/show'
-  	end
+    @blog_comments = @blog.blog_comments.reverse_order
+  	@blog_comment = current_user.blog_comments.new(blog_comment_params)
+  	@blog_comment.blog_id = @blog.id
+  	@blog_comment.save
   end
 
   def destroy
+    @blog = Blog.find(params[:blog_id])
   	@blog_comment = BlogComment.find_by(id: params[:id], blog_id: params[:blog_id])
-  	if @blog_comment.destroy
-  		redirect_to request.referer, notice: "コメントを削除しました"
-  	else
-  		@tag_list = @blog.tags
-    	@blog_comments = BlogComment.where(blog_id: @blog.id)
-  		render 'blogs/show'
-  	end
+  	@blog_comment.destroy
   end
 
   private

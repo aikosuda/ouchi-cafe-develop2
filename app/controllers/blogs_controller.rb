@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @tag_list = @blog.tags
     @blog_comment = BlogComment.new
-    @blog_comments = BlogComment.where(blog_id: @blog.id)
+    @blog_comments = @blog.blog_comments.reverse_order
   end
 
   def index
