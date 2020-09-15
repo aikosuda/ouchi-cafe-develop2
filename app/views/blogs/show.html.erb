@@ -15,23 +15,7 @@
 	<% end %>
 	<%= link_to 'ホーム', root_path %>
 
-	<ul>
-		<% if @blog.favorited_by?(current_user) %>
-			<li>
-  				<%= link_to blog_favorites_path(@blog), method: :delete do %>
-    				<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-    				<%= @blog.favorites.count %> いいね
-  				<% end %>
-			</li>
-		<% else %>
-			<li>
-  				<%= link_to blog_favorites_path(@blog), method: :post do %>
-   					<i class="fa fa-heart" aria-hidden="true"></i>
-    				<%= @blog.favorites.count %> いいね
-  				<% end %>
-			</li>
-		<% end %>
-	</ul>
+	<%= render 'like_form', blog: @blog %>
 
 
 
