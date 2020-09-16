@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # メインページルーティング
   root 'home#top'
   get 'home/about' => 'home#about'
+  post 'home/guest_sign_in' => 'home#new_guest'
 
   devise_for :users
   resources :users, only: [:edit, :update] do

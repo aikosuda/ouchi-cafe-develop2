@@ -26,7 +26,7 @@
 		<div><%= @review.updated_at.strftime("%Y-%m-%d %H:%M") %></div>
 		<div id="star-rate" data-score="<%= @review.rate %>"></div>
 		<div><%= @review.content %></div>
-		<% if @review.user_id == current_user.id %>
+		<% if @review.user == current_user %>
 			<%= link_to "編集", edit_review_path(@review), class: "btn btn-primary" %>
 			<%= link_to "削除", review_path(@review), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
 		<% end %>
