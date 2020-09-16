@@ -1,4 +1,92 @@
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+<div class="container-fluid main-visual">
+	<div class="row mt-0 justify-content-center main-visual-content">
+		<div class="col-xs-6 col-xs-offset-6 main-visual-text d-flex flex-column justify-content-center">
+			家でのリラックス時間に...<br><br>
+			お仕事のお供に...<br><br>
+			友人との大切な時間に...<br><br>
+			<h4>
+				<b>『とっておきの一杯を見つけてみませんか？』</b>
+			</h4>
+		</div>
+	</div>
+</div>
+<% unless user_signed_in? %>
+	<div class="container-fuid signup-content">
+		<div class="row">
+			<div class="col-xs-3 col-xs-offset-3 signup-image">
+			</div>
+			<div class="col-xs-4 signup-text">
+				あなたにとってのとっておきの一杯をシェアしてみませんか？<br><br>
+				<h4>会員登録は<%= link_to 'こちら', new_user_registration_path %></h4>
+			</div>
+		</div>
+	</div>
+<% end %>
 
-<%= link_to 'サインアウト', destroy_user_session_path, method: :delete %>
+<div class="container-fluid main-content">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1 content-box">
+			<h2><b>新着レビュー</b></h2>
+			<div class="content-item-box">
+				<% @reviews.each do |review| %>
+					<div class="content-item">
+						<%= link_to review_path(review) do %>
+							<div>
+								<%= attachment_image_tag review, :image, size: "200x150", fallback: 'no_image.png',size: "160x120", class: "content-image" %>
+							</div>
+							<div class="content-text">
+								商品名：<%= review.name %><br>
+								<%= review.updated_at.strftime("%Y-%m-%d") %>
+							</div>
+							<div id="star-rate" data-score="<%= review.rate %>" class="content-text"></div>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-xs-2 col-xs-offset-9">
+			<%= link_to "もっと見る", select_reviews_path %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1 content-box">
+			<h2><b>人気ブログ記事</b></h2>
+			<div class="content-item-box">
+				<% @blog_ranks.each do |blog| %>
+					<div class="content-item">
+						<%= link_to blog_path(blog) do %>
+							<div>
+								<%= attachment_image_tag blog, :image, size: "200x150", fallback: 'no_image.png',size: "160x120", class: "content-image" %>
+							</div>
+							<div class="content-text">
+								タイトル：<%= blog.title %><br>
+								<%= blog.updated_at.strftime("%Y-%m-%d") %><br>
+								<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   								<%= blog.favorites.count %> いいね
+							</div>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-xs-2 col-xs-offset-9">
+			<%= link_to "もっと見る", select_blogs_path %>
+		</div>
+	</div>
+
+</div>
+
+
+<%# 星評価 %> 
+<script>
+	$('#star-rate').raty({
+        readOnly: true,
+        size: 36,
+   		starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+    	score: function() {
+     	 return $(this).attr('data-score');
+    	},
+    });
+</script>

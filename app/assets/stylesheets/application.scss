@@ -17,3 +17,97 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+
+body {
+	background-color: #dcdcdc;
+}
+
+/* ヘッダー　*/
+
+.header {
+	background-color: rgba(0,0,0,0.5);
+	padding: 40px 30px;
+	position:fixed;
+}
+.nav-item {
+	font-size: 20px;
+	color: #a9a9a9;
+}
+
+/* トップ　*/
+
+.main-visual {
+	width: 100%;
+	height: 800px;
+	background-image: url(coffee1.jpg);
+	background-size: cover;
+	background-position: bottom;
+	box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
+}
+.main-visual-content {
+  width: 100%;
+  height: 800px;
+  background-color: rgba(0,0,0,0);
+  text-align: center;
+  padding-top: 300px;
+}
+.main-visual-text {
+  color: #a9a9a9;
+}
+.main-content {
+	width: 100%;
+	height: 900px;
+}
+.content-box {
+	margin-top: 50px;
+}
+.content-item-box {
+	height: 260px;
+	border-radius: 30px;
+	display: flex;
+}
+.content-item {
+	width: 20%;
+	height: 240px;
+  	margin: 10px;
+  	background-color: #808080;
+  	border-radius: 30px;
+}
+.content-image {
+	border-radius: 30px;
+	margin: 20px 30px;
+}
+.content-text {
+	text-align: center;
+	color: #fff;
+}
+.signup-content {
+	margin-top: 50px;
+}
+.signup-image {
+	width: 300px;
+	height: 300px;
+	border-radius: 300px;
+	background-image: url(latte.jpg);
+	background-size: cover;
+	background-position: center;
+	box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
+}
+.signup-text {
+	text-align: center;
+	padding-top: 100px;
+}
+
+/* フッター　*/
+.footer {
+	width: 100%;
+	height: 100px;
+	background-color: #696969;
+	line-height: 100px;
+	text-align: center;
+	color: #fff;
+	font-size: 15px;
+
+}
+
