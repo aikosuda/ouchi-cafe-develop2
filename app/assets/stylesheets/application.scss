@@ -22,7 +22,13 @@
 body {
 	background-color: #dcdcdc;
 }
-
+.container-padding {
+	padding: 150px 0;
+}
+.alert-success {
+	background-color: rgba(0,0,0,0.5);
+	color: #fff;
+}
 /* ヘッダー　*/
 
 .header {
@@ -62,10 +68,17 @@ body {
 .content-box {
 	margin-top: 50px;
 }
+.content-box p {
+	font-size: 30px;
+	font-weight: 600;
+	padding: 2px;
+	background: linear-gradient(transparent 60%, #808080);
+}
 .content-item-box {
 	height: 260px;
 	border-radius: 30px;
 	display: flex;
+
 }
 .content-item {
 	width: 20%;
@@ -73,6 +86,7 @@ body {
   	margin: 10px;
   	background-color: #808080;
   	border-radius: 30px;
+  	box-shadow: 10px 10px 10px rgba(0,0,0,0.4)
 }
 .content-image {
 	border-radius: 30px;
@@ -97,6 +111,98 @@ body {
 .signup-text {
 	text-align: center;
 	padding-top: 100px;
+}
+
+/* レビュー検索　*/
+.select {
+	margin-top: 15px;
+	font-size: 20px;
+	font-weight: 300px;
+}
+.select-category {
+	height: 50px;
+	font-size: 15px;
+	font-weight: 200;
+	padding: 2px;
+	}
+.new-review {
+	width: 50%;
+	height: 50px;
+	margin: 0 auto;
+	margin-top: 150px;
+	line-height: 50px;
+	font-size: 20px;
+	font-weight: 300px;
+	background-color: #696969;
+	color: #fff;
+}
+.review-index {
+	display: flex;
+}
+.review-item {
+	width: 30%;
+	height: 400px;
+	margin: 20px;
+	background-color: #808080;
+  	border-radius: 30px;
+  	box-shadow: 10px 10px 10px rgba(0,0,0,0.4)
+}
+.review-name {
+	color: #fff;
+	font-size: 20px;
+	font-weight: 200;
+}
+.review-content {
+	margin: 20px;
+	color: #fff;
+	font-size: 20px;
+	font-weight: 150;
+	overflow: hidden;
+}
+.review-content p {
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.next-box {
+	height: 30px;
+	background-color: #fff;
+	border-radius: 30px;
+}
+.next-box p {
+	color: #696969;
+	line-height: 30px;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+/* ブログ検索　*/
+.blog-item {
+	height: 300px;
+	background-color: #f5f5f5;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 30px;
+	box-shadow: 10px 10px 10px rgba(0,0,0,0.4)
+}
+.brog-name {
+	font-size: 20px;
+	font-weight: 500;
+}
+.blog-text-box {
+	padding: 30px;
+}
+.blog-user-name {
+	border-bottom: 1px solid #808080;
+	margin-bottom: 20px;
+
+}
+.blog-user-name p {
+	font-size: 20px;
+}
+.blog-content p {
+	font-size: 20px;
 }
 
 /* フッター　*/

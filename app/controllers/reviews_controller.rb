@@ -48,6 +48,7 @@ class ReviewsController < ApplicationController
 
   def select
     @review_categories = ReviewCategory.all
+    @reviews = Review.page(params[:page]).per(12)
   end
 
   def category

@@ -54,6 +54,7 @@ class BlogsController < ApplicationController
 
   def select
     @tag_list = Tag.all
+    @blogs = Blog.page(params[:page]).per(4)
   end
 
   def tag
