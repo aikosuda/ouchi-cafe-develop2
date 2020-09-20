@@ -32,12 +32,12 @@
 					</tr>
 					<tr>
 						<th>レビュー内容</th>
-						<td><%= f.text_area :content, class: "form-control" %></td>
+						<td><%= f.text_area :content, class: "form-control", size: "20x10" %></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="col-xs-2" style="padding-bottom: 100px;padding-left: 1000px;">
+		<div class="col-xs-2" class="submit-button" style="padding-bottom: 100px;padding-left: 1000px;">
 	    		<%= f.submit '投稿する', class: "btn btn-primary btn-new-register btn-lg" %>
 	    </div>
 	<% end %>

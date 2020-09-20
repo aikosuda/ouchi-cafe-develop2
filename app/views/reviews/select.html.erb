@@ -49,8 +49,9 @@
 							<%= attachment_image_tag review, :image, size: "300x200", fallback: 'no_image.png',size: "300x200", class: "content-image" %>
 						</div>
 						<div class="text-center review-name">
-							商品名：<%= review.name %><br>
+							<%= review.name %><br>
 							<%= review.updated_at.strftime("%Y-%m-%d") %>
+							<div class="text-center" id="star-rate" data-score="<%= review.rate %>"></div>
 						</div>
 						<div class="review-content">
 							<p><%= review.content %></p>
@@ -68,3 +69,17 @@
 		</div>
 	</div>
 </div>
+
+<%# 星評価 %> 
+<script>
+	$('#star-rate').raty({
+        readOnly: true,
+        size: 36,
+   		starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+    	score: function() {
+     	 return $(this).attr('data-score');
+    	},
+    });
+</script>
