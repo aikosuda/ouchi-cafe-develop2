@@ -1,3 +1,4 @@
+<div class="container container-padding">
 <div class="row">
 	<div class="col-xs-3">
 		<div class="sidebar" style="width: 20rem;">
@@ -17,29 +18,43 @@
 	</div>
 
 	<div class="col-xs-9">
-		<div class="index-title">
-			<span>
+
+		<div class="content-box">
+			<p class="text-center">
 				<% if @review_category %>
 					<%= @review_category.name %>
 				<% else %>
 					全レビュー
 				<% end %>
-			</span>
+			</p>
 		</div>
-
-		<% @reviews.each do |review| %>
-			<div>
-				<%= link_to review_path(review) do %>
-					<%= attachment_image_tag review, :image, size: "120x90", fallback: 'no_image.png',size: "120x90" %>
-					<p class="product-name">
-						<%= review.name %>
-					</p>
-          		<% end %>
-				<div id="star-rate" data-score="<%= review.rate %>"></div>
-          	</div>
-        <% end %>
+		<div class="review-index">
+			<% @reviews.each do |review| %>
+				<div class="review-item">
+					<%= link_to review_path(review) do %>
+						<div>
+							<%= attachment_image_tag review, :image, size: "200x150", fallback: 'no_image.png',size: "200x150", class: "content-image" %>
+						</div>
+						<div class="text-center review-name">
+							<%= review.name %><br>
+							<%= review.updated_at.strftime("%Y-%m-%d") %>
+							<div class="text-center" id="star-rate" data-score="<%= review.rate %>"></div>
+						</div>
+						<div class="review-content">
+							<p><%= review.content %></p>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<%= paginate @reviews %>
+	</div>
+</div>
 
 	</div>
+</div>
 </div>
 
 <%# 星評価 %> 

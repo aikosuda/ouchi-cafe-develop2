@@ -1,3 +1,4 @@
+<div class="container container-padding">
 <div class="row">
 	<div class="col-xs-3">
 		<div class="sidebar" style="width: 20rem;">
@@ -17,7 +18,7 @@
 	</div>
 
 	<div class="col-xs-9">
-		<h3><%= @review.name %>のレビュー</h3>
+		
 		<div>
 			<%= attachment_image_tag @review, :image, size: '400x300', id: "file-preview",fallback: "no_image.png",size:'400x300' %>
 		</div>
@@ -31,6 +32,7 @@
 			<%= link_to "削除", review_path(@review), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
 		<% end %>
 	</div>
+</div>
 </div>
 
 <script>
