@@ -1,2 +1,284 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container container-padding">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1 user-profile">
+			<p class="mypage-title">
+				マイページ
+			</p>
+			<div class="col-xs-6">
+				<%= attachment_image_tag @user, :profile_image, size: '230x230', id: "file-preview",fallback: "no_image.png",size:'230x230', class: "profile-image" %>
+			</div>
+			<div class="col-xs-6">
+				<h3>
+					<%= @user.name %>さん
+				</h3>
+				<h4>
+					<%= @user.introduction %>
+				</h4>
+				<% if @user == current_user %>
+					<div class="col-xs-12">
+						<%=link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-default" %>
+					</div>
+				<% else %>
+					<% if current_user.following?(@user) %>
+              			<%= link_to 'フォロー中', user_relationships_path(@user), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
+            		<% else %>
+              			<%= link_to 'フォローする', user_relationships_path(@user), method: :post, class: "btn btn-default" %>
+            		<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+	<div class="row user-show">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="area">
+				<ul id="tab-menu" class="clearfix">
+					<li><a href="#tab1" class="active">投稿記事一覧</a></li>
+					<li><a href="#tab2" class="">お気に入り</a></li>
+					<li><a href="#tab3" class="">フォロー中</a></li>
+					<li><a href="#tab4" class="">フォロワー</a></li>
+					<li><a href="#tab5" class="">通知</a></li>
+				</ul>
+
+				<div id="tab-contents" class="clearfix">
+					<div id="tab1" class="tab">
+						<div class="mypage-content">
+							<h4>あなたが投稿したレビュー</h4>
+							<% if @reviews.count > 0 %>
+								<% @reviews.each do |review| %>
+									<div class="row mypage-item">
+										<div class="col-xs-4">
+											<%= link_to review_path(review) do %>
+													<%= attachment_image_tag review, :image, size: "150x150", fallback: 'no_image.png',size: "150x150", class: "mypage-review-image" %>
+											<% end %>
+										</div>
+										<div class="col-xs-4">
+											<h4><%= review.name %></h4>
+											<h4><%= review.updated_at.strftime("%Y-%m-%d") %></h4>
+											<h5><%= review.content %></h5>
+											<div class="text-center" id="star-rate" data-score="<%= review.rate %>"></div>
+										</div>
+										<div class="col-xs-4">
+											<div class="row">
+												<div class="col-xs-4">
+													<%= link_to user_my_page_path(review.user) do %>
+														<%= attachment_image_tag review.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+													<% end %>
+												</div>
+												<div class="col-xs-8 name-box">
+													<h5><%= review.user.name %>さん</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								<% end %>
+							<% else %>
+								<p>レビューはまだありません</p>
+								<%= link_to new_review_path do %>
+		        					<div class="text-center new-review"><p>レビューを書く</p></div>
+	    						<% end %>
+	    					<% end %>
+	    				</div>
+
+	    				<div class="mypage-cotntent">
+	    					<h4>あなたが投稿したブログ記事</h4>
+	    					<% if @blogs.count > 0 %>
+								<% @blogs.each do |blog| %>
+									<div class="row mypage-item">
+										<div class="col-xs-4">
+											<%= link_to blog_path(blog) do %>
+													<%= attachment_image_tag blog, :image, size: "150x150", fallback: 'no_image.png',size: "150x150", class: "mypage-review-image" %>
+											<% end %>
+										</div>
+										<div class="col-xs-4">
+											<h4><%= blog.title %></h4>
+											<h4><%= blog.updated_at.strftime("%Y-%m-%d") %></h4>
+											<h5><%= blog.content %></h5>
+										</div>
+										<div class="col-xs-4">
+											<div class="row">
+												<div class="col-xs-4">
+													<%= link_to user_my_page_path(blog.user) do %>
+														<%= attachment_image_tag blog.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+													<% end %>
+												</div>
+												<div class="col-xs-8 name-box">
+													<h5><%= blog.user.name %>さん</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								<% end %>
+							<% else %>
+								<p>記事はまだありません</p>
+								<%= link_to new_blog_path do %>
+		        					<div class="text-center new-review"><p>記事を投稿する</p></div>
+	    						<% end %>
+	    					<% end %>
+	    				</div>
+	    			</div>
+
+					<div id="tab2" class="tab">
+						<div class="mypage-cotntent">
+						<h4><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>いいねをしているブログ記事</h4>
+	    					<% if @favorite_blogs.count > 0 %>
+								<% @favorite_blogs.each do |favorite| %>
+									<div class="row mypage-item">
+										<div class="col-xs-4">
+											<%= link_to blog_path(favorite.blog) do %>
+													<%= attachment_image_tag favorite.blog, :image, size: "150x150", fallback: 'no_image.png',size: "150x150", class: "mypage-review-image" %>
+											<% end %>
+										</div>
+										<div class="col-xs-4">
+											<h4><%= favorite.blog.title %></h4>
+											<h4><%= favorite.blog.updated_at.strftime("%Y-%m-%d") %></h4>
+											<h5><%= favorite.blog.content %></h5><br><br>
+											<div>
+												<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   												<%= favorite.blog.favorites.count %>
+   												<i class="far fa-comment-alt" aria-hidden="true"></i>
+   												<%= favorite.blog.blog_comments.count %>
+   											</div>
+										</div>
+										<div class="col-xs-4">
+											<div class="row">
+												<div class="col-xs-4">
+													<%= link_to user_my_page_path(favorite.blog.user) do %>
+														<%= attachment_image_tag favorite.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+													<% end %>
+												</div>
+												<div class="col-xs-8 name-box">
+													<h5><%= favorite.blog.user.name %>さん</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								<% end %>
+							<% else %>
+								<p>いいねをまだしていません</p>
+								<%= link_to select_blog_ do %>
+		        					<div class="text-center new-review"><p>記事を探す</p></div>
+	    						<% end %>
+	    					<% end %>
+	    				</div>
+	    			</div>
+
+					<div id="tab3" class="tab">
+						<div class="mypage-cotntent">
+							<% if @following.count > 0 %>
+								<% @following.each do |following| %>
+									<div class="row mypage-item">
+										<div class="col-xs-4">
+											<%= link_to user_my_page_path(following) do %>
+												<%= attachment_image_tag following, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+											<% end %>
+										</div>
+										<div class="col-xs-6">
+											<div>
+												<h4>
+													<%= following.name %>さん
+												</h4>
+												<h5>
+													<%= following.introduction %>
+												</h5>
+											</div>
+											<div class="post-count">
+												<h5>レビュー投稿：<%= following.reviews.count %>件</h5>
+												<h5>ブログ投稿：<%= following.blogs.count %>件</h5>
+											</div>
+										</div>
+										<div class="col-xs-2 follow-box">
+											<% if following != current_user %>
+												<% if current_user.following?(following) %>
+    	        	  								<%= link_to 'フォロー中', user_relationships_path(following), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
+        	    								<% else %>
+            	  									<%= link_to 'フォローする', user_relationships_path(following), method: :post, class: "btn btn-default" %>
+            									<% end %>
+            								<% end %>
+            							</div>
+            						</div>
+								<% end %>
+							<% else %>
+								<p>フォロー中のユーザーはいません</p>
+							<% end %>
+						</div>
+					</div>
+
+					<div id="tab4" class="tab">
+						<div class="mypage-cotntent">
+							<% if @follower.count > 0 %>
+								<% @follower.each do |follower| %>
+									<div class="row mypage-item">
+										<div class="col-xs-4">
+											<%= link_to user_my_page_path(follower) do %>
+												<%= attachment_image_tag follower, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+											<% end %>
+										</div>
+										<div class="col-xs-6">
+											<div>
+												<h4>
+													<%= follower.name %>さん
+												</h4>
+												<h5>
+													<%= follower.introduction %>
+												</h5>
+											</div>
+											<div class="post-count">
+												<h5>レビュー投稿：<%= follower.reviews.count %>件</h5>
+												<h5>ブログ投稿：<%= follower.blogs.count %>件</h5>
+											</div>
+										</div>
+										<div class="col-xs-2 follow-box">
+											<% if follower != current_user %>
+												<% if current_user.following?(follower) %>
+    	        	  								<%= link_to 'フォロー中', user_relationships_path(follower), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
+        	    								<% else %>
+            	  									<%= link_to 'フォローする', user_relationships_path(follower), method: :post, class: "btn btn-default" %>
+            									<% end %>
+            								<% end %>
+            							</div>
+            						</div>
+								<% end %>
+							<% else %>
+								<p>あなたをフォローしているユーザーはまだはいません</p>
+							<% end %>
+						</div>
+					</div>
+
+					<div id="tab5" class="tab">
+						<p>tab5</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%# タブメニュー %>
+<script>
+	$('#tab-contents .tab[id != "tab1"]').hide();
+
+	$('#tab-menu a').on('click', function(event) {
+		$("#tab-contents .tab").hide();
+    	$("#tab-menu .active").removeClass("active");
+  		$(this).addClass("active");
+		$($(this).attr("href")).show();
+  		event.preventDefault();
+	});
+</script>
+
+<%# 星評価 %> 
+<script>
+	$('#star-rate').raty({
+        readOnly: true,
+        size: 36,
+   		starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+    	score: function() {
+     	 return $(this).attr('data-score');
+    	},
+    });
+</script>
+

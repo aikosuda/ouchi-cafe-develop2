@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update] do
     #マイページ表示
   	get 'my_page' => 'users#show'
+    #フォローする・外す
+    resource :relationships, only: [:create, :destroy]
 
  end
 

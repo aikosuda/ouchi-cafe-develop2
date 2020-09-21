@@ -18,6 +18,17 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.clearfix:after{
+  content:"";
+  clear: both;
+  display: block;
+}
+
 
 body {
 	background-color: #dcdcdc;
@@ -205,7 +216,83 @@ body {
 .blog-content p {
 	font-size: 20px;
 }
+/* マイページ　*/
+.mypage-title {
+	font-size: 30px;
+	font-weight: 600;
+	padding: 2px;
+	background: linear-gradient(transparent 60%, #808080);
+	margin-bottom: 30px;
+}
+.profile-image {
+	border-radius: 50%;
+}
+.user-profile h3 {
+	font-size: 28px;
+	margin-top: 20px;
+    margin-bottom: 10px;
+}
+.user-profile h4 {
+	font-size: 18px;
+	margin-top: 35px;
+	margin-bottom: 40px;
+}
 
+.area {
+	margin-top: 50px;
+
+}
+#tab-menu li {
+  width: 20%;
+  float: left;
+  list-style-type: none;
+}
+#tab-menu a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background-color: #696969;
+}
+#tab-menu .active {
+  background-color: #fff;
+  color: #696969;
+}
+#tab-contents .tab {
+  padding: 30px;
+  background-color: #fff;
+}
+
+#tab-contents p{
+  color:#000;
+  line-height: 2.5;
+}
+.mypage-content {
+	margin-left: 15px;
+}
+.mypage-item {
+	margin: 30px 0;
+	padding-top: 10px;
+	border-top: 1px solid #808080;
+}
+.mypage-item h5 {
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.post-count {
+	padding-top: 80px;
+}
+.name-box {
+	margin-top: 30px;
+	padding-left: 30px;
+	height: 30px;
+}
+.follow-box {
+	margin-top: 30px;
+}
 /* フッター　*/
 .footer {
 	width: 100%;
