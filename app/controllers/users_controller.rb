@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   	@user = User.find(params[:user_id])
   	@reviews = @user.reviews
   	@blogs = @user.blogs
-  	@favorite_blogs = @user.favorites
+    @favorite_reviews = @user.favorites.where(blog_id: [nil, ''])
+  	@favorite_blogs = @user.favorites.where(review_id: [nil, ''])
   	@following = @user.following_user
   	@follower = @user.follower_user
   end
