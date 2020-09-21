@@ -1,6 +1,7 @@
 class Review < ApplicationRecord
 	belongs_to :user
 	belongs_to :review_category
+	has_many :favorites, dependent: :destroy
 
 	attachment :image
 
@@ -14,5 +15,10 @@ class Review < ApplicationRecord
 	#商品名で検索
 	def self.search_review(search)
     	self.where(['name LIKE ?', "%#{search}%"])
+  	end
+
+  	#いいねの有無をチェック
+  	def favorited_by?(user)
+  		favorites.where(user_id: user.id).exists?
   	end
 end

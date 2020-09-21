@@ -120,46 +120,88 @@
 
 					<div id="tab2" class="tab">
 						<div class="mypage-cotntent">
-						<h4><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>いいねをしているブログ記事</h4>
-	    					<% if @favorite_blogs.count > 0 %>
-								<% @favorite_blogs.each do |favorite| %>
-									<div class="row mypage-item">
-										<div class="col-xs-4">
-											<%= link_to blog_path(favorite.blog) do %>
-													<%= attachment_image_tag favorite.blog, :image, size: "150x150", fallback: 'no_image.png',size: "150x150", class: "mypage-review-image" %>
-											<% end %>
-										</div>
-										<div class="col-xs-4">
-											<h4><%= favorite.blog.title %></h4>
-											<h4><%= favorite.blog.updated_at.strftime("%Y-%m-%d") %></h4>
-											<h5><%= favorite.blog.content %></h5><br><br>
-											<div>
-												<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-   												<%= favorite.blog.favorites.count %>
-   												<i class="far fa-comment-alt" aria-hidden="true"></i>
-   												<%= favorite.blog.blog_comments.count %>
-   											</div>
-										</div>
-										<div class="col-xs-4">
-											<div class="row">
-												<div class="col-xs-4">
-													<%= link_to user_my_page_path(favorite.blog.user) do %>
-														<%= attachment_image_tag favorite.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
-													<% end %>
-												</div>
-												<div class="col-xs-8 name-box">
-													<h5><%= favorite.blog.user.name %>さん</h5>
+							<div class="favorite-content">
+								<h4><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>いいねをしているレビュー</h4>
+		    					<% if @favorite_reviews.count > 0 %>
+									<% @favorite_reviews.each do |favorite| %>
+										<div class="row mypage-item">
+											<div class="col-xs-4">
+												<%= link_to review_path(favorite.review) do %>
+													<%= attachment_image_tag favorite.review, :image, size: "150x150", fallback: 'no_image.png',size: "150x150", class: "mypage-review-image" %>
+												<% end %>
+											</div>
+											<div class="col-xs-4">
+												<h4><%= favorite.review.name %></h4>
+												<h4><%= favorite.review.updated_at.strftime("%Y-%m-%d") %></h4>
+												<h5><%= favorite.review.content %></h5><br><br>
+												<div>
+													<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   													<%= favorite.review.favorites.count %>
+   												</div>
+											</div>
+											<div class="col-xs-4">
+												<div class="row">
+													<div class="col-xs-4">
+														<%= link_to user_my_page_path(favorite.review.user) do %>
+															<%= attachment_image_tag favorite.review.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+														<% end %>
+													</div>
+													<div class="col-xs-8 name-box">
+														<h5><%= favorite.review.user.name %>さん</h5>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-								<% end %>
-							<% else %>
-								<p>いいねをまだしていません</p>
-								<%= link_to select_blog_ do %>
-		        					<div class="text-center new-review"><p>記事を探す</p></div>
+									<% end %>
+								<% else %>
+									<p>いいねをまだしていません</p>
+									<%= link_to select_reviews_path do %>
+		    	    					<div class="text-center new-review"><p>レビューを探す</p></div>
+	    							<% end %>
+	   		 					<% end %>
+	   		 				</div>
+	   		 				<div class="favorite-content">
+								<h4><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>いいねをしているブログ記事</h4>
+	    						<% if @favorite_blogs.count > 0 %>
+									<% @favorite_blogs.each do |favorite| %>
+										<div class="row mypage-item">
+											<div class="col-xs-4">
+												<%= link_to blog_path(favorite.blog) do %>
+													<%= attachment_image_tag favorite.blog, :image, size: "150x150", fallback: 'no_image.png',size: "150x150", class: "mypage-review-image" %>
+												<% end %>
+											</div>
+											<div class="col-xs-4">
+												<h4><%= favorite.blog.title %></h4>
+												<h4><%= favorite.blog.updated_at.strftime("%Y-%m-%d") %></h4>
+												<h5><%= favorite.blog.content %></h5><br><br>
+												<div>
+													<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   													<%= favorite.blog.favorites.count %>
+   													<i class="far fa-comment-alt" aria-hidden="true"></i>
+   													<%= favorite.blog.blog_comments.count %>
+   												</div>
+											</div>
+											<div class="col-xs-4">
+												<div class="row">
+													<div class="col-xs-4">
+														<%= link_to user_my_page_path(favorite.blog.user) do %>
+															<%= attachment_image_tag favorite.blog.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+														<% end %>
+													</div>
+													<div class="col-xs-8 name-box">
+														<h5><%= favorite.blog.user.name %>さん</h5>
+													</div>
+												</div>
+											</div>
+										</div>
+									<% end %>
+								<% else %>
+									<p>いいねをまだしていません</p>
+									<%= link_to select_blogs_path do %>
+	        							<div class="text-center new-review"><p>記事を探す</p></div>
+	    							<% end %>
 	    						<% end %>
-	    					<% end %>
+	    					</div>
 	    				</div>
 	    			</div>
 

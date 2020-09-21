@@ -1,14 +1,14 @@
 <ul id="like_form_<%= blog.id %>">
 	<% if blog.favorited_by?(current_user) %>
 		<li>
-  			<%= link_to blog_favorites_path(blog), method: :delete, remote: true do %>
+  			<%= link_to blog_unlike_path(blog), method: :delete, remote: true do %>
     			<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
    				<%= blog.favorites.count %> いいね
   			<% end %>
 		</li>
 	<% else %>
 		<li>
-		  	<%= link_to blog_favorites_path(blog), method: :post, remote: true do %>
+		  	<%= link_to blog_like_path(blog), method: :post, remote: true do %>
    				<i class="fa fa-heart" aria-hidden="true"></i>
     			<%= blog.favorites.count %> いいね
   			<% end %>
