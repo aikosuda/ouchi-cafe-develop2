@@ -5,6 +5,7 @@ class FavoritesController < ApplicationController
 		@blog = Blog.find(params[:blog_id])
 		@favorite = current_user.favorites.new(blog_id: @blog.id)
 		@favorite.save
+		@blog.create_notification_favorite_blog!(current_user)
 	end
 
 	def unlike_blog
@@ -17,6 +18,7 @@ class FavoritesController < ApplicationController
 		@review = Review.find(params[:review_id])
 		@favorite = current_user.favorites.new(review_id: @review.id)
 		@favorite.save
+		@review.create_notification_favorite_review!(current_user)
 	end
 
 	def unlike_review

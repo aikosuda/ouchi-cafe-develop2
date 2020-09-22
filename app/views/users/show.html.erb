@@ -10,6 +10,19 @@
 			<div class="col-xs-6">
 				<h3>
 					<%= @user.name %>さん
+					<% if @user == current_user %>  
+						<%= link_to notifications_path do %>
+							<% if unchecked_notifications.any? %>
+								<span class="fa-stack fa-lg">
+									<i class="far fa-bell notification-bel fa-stack-2x"></i>
+									<i class="fas fa-circle notification-circle fa-stack-1x"></i>
+									<i class="fa fa-stack-1x notification-count"><%= @notifications.count %></i>
+								</span>
+							<% else %>
+								<i class="far fa-bell fa-lg notification-bel"></i>
+							<% end %>
+						<% end %>
+					<% end %>
 				</h3>
 				<h4>
 					<%= @user.introduction %>
