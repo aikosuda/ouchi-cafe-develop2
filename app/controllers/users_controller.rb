@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   	@favorite_blogs = @user.favorites.where(review_id: [nil, ''])
   	@following = @user.following_user
   	@follower = @user.follower_user
+    @notifications = current_user.passive_notifications
   end
 
   def edit

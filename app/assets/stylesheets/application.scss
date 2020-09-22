@@ -52,6 +52,13 @@ body {
 	color: #a9a9a9;
 }
 
+.header-notification {
+	position: absolute;
+	font-size: 15px;
+	right: 5px;
+	top: 13px;
+	color: rgba(239,160,76,0.7);
+}
 /* トップ　*/
 
 .main-visual {
@@ -237,6 +244,23 @@ body {
 	margin-top: 35px;
 	margin-bottom: 40px;
 }
+.notification-bel {
+	font-size: 50px;
+}
+.notification-circle {
+	position: absolute;
+	font-size: 30px;
+	padding-left: 4rem;
+	padding-top: 0rem;
+	color: #efa04c;
+}
+.notification-count {
+	position: absolute;
+	font-size: 15px;
+	color: #fff;
+	padding-left: 4rem;
+	padding-top: 0rem;
+}
 
 .area {
 	margin-top: 50px;
@@ -295,6 +319,24 @@ body {
 }
 .follow-box {
 	margin-top: 30px;
+}
+
+/* 通知画面　*/
+.notification-delete {
+	font-size: 20px;
+}
+.notification-text {
+	font-size: 17px;
+}
+.moderate-form {
+	font-size: 15px;
+}
+.notification-comment {
+	color: #696969;
+	font-size: 15px;
+}
+.notification-item {
+	padding: 5px;
 }
 /* フッター　*/
 .footer {

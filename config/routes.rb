@@ -42,9 +42,9 @@ Rails.application.routes.draw do
     end
 
     resources :blog_comments, only: [:create, :destroy]
-
-    
   end
+
+  resources :notifications, only: [:index, :destroy]
 
 
 
