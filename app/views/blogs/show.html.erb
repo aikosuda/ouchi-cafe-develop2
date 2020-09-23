@@ -2,7 +2,7 @@
 <div class="row">
 	<h3>ブログ詳細</h3>
 	<p><%= @blog.title %></p>
-	<p><%= @blog.content %></p><br>
+	<p><%== @blog.content %></p><br>
 	<i class="fa fa-calendar"></i><%= @blog.updated_at.strftime("%Y-%m-%d") %>
 	<%= "タグ：" %>
 	<% @tag_list.each do |list| %>
