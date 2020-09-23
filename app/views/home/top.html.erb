@@ -13,11 +13,21 @@
 <% unless user_signed_in? %>
 	<div class="container-fuid signup-content">
 		<div class="row">
-			<div class="col-xs-3 col-xs-offset-3 signup-image">
+			<div class="col-xs-3 col-xs-offset-2 signup-image">
 			</div>
-			<div class="col-xs-4 signup-text">
-				あなたにとってのとっておきの一杯をシェアしてみませんか？<br><br>
-				<h4>会員登録は<%= link_to 'こちら', new_user_registration_path %></h4>
+			<div class="col-xs-7 signup-text">
+				<p>あなたのお気に入りの一杯をシェアしてみませんか？</p><br>
+				<div class="col-xs-12 text-center">
+					<%= link_to 'ゲストログイン', home_guest_sign_in_path, method: :post, class: "select-button" %>
+					<div class="row top-button-box">
+						<div class="col-xs-3 col-xs-offset-3 text-center">
+							<%= link_to 'ログイン', new_user_session_path, class: "select-button" %>
+						</div>
+						<div class="col-xs-3 text-center">
+							<%= link_to '新規登録', new_user_registration_path, class: "select-button" %>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -25,68 +35,75 @@
 
 <div class="container-fluid main-content">
 	<div class="row">
-		<div class="col-xs-10 col-xs-offset-1 content-box">
+		<div class="col-xs-5 col-xs-offset-1 content-box">
 			<p>新着レビュー</p>
 			<div class="content-item-box">
 				<% @reviews.each do |review| %>
 					<div class="content-item">
 						<%= link_to review_path(review) do %>
 							<div>
-								<%= attachment_image_tag review, :image, size: "200x150", fallback: 'no_image.png',size: "160x120", class: "content-image" %>
+								<%= attachment_image_tag review, :image, size: "150x100", fallback: 'no_image.png',size: "150x100", class: "content-review-image" %>
 							</div>
 							<div class="content-text">
-								商品名：<%= review.name %><br>
-								<%= review.updated_at.strftime("%Y-%m-%d") %>
+								<%= review.name %><br>
 							</div>
-							<div id="star-rate" data-score="<%= review.rate %>" class="content-text"></div>
 						<% end %>
+						<div id="star-rate-<%= review.id %>" data-score="<%= review.rate %>", class="content-text"></div><br>
+						<div class="content-text">
+							<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   							<%= review.favorites.count %> いいね
+   						</div>
 					</div>
+					<%# 星評価 %> 
+					<script>
+						$('#star-rate-<%= review.id %>').raty({
+        					readOnly: true,
+        					size: 36,
+   							starOff:  '<%= asset_path('star-off.png') %>',
+        					starOn : '<%= asset_path('star-on.png') %>',
+        					starHalf: '<%= asset_path('star-half.png') %>',
+    						score: function() {
+     							return $(this).attr('data-score');
+    						},
+    					});
+					</script>
 				<% end %>
 			</div>
+			<div class="col-xs-5 col-xs-offset-4 text-center more-link">
+				<%= link_to "レビューを探す", select_reviews_path, class: "select-button" %>
+			</div>
 		</div>
-		<div class="col-xs-2 col-xs-offset-9">
-			<%= link_to "もっと見る", select_reviews_path %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-10 col-xs-offset-1 content-box">
+
+		<div class="col-xs-5 content-box">
 			<p>人気ブログ記事</p>
-			<div class="content-item-box">
+			<div class="blog_index">
 				<% @blog_ranks.each do |blog| %>
-					<div class="content-item">
-						<%= link_to blog_path(blog) do %>
-							<div>
-								<%= attachment_image_tag blog, :image, size: "200x150", fallback: 'no_image.png',size: "160x120", class: "content-image" %>
+					<%= link_to blog_path(blog) do %>
+						<div class="row blog-item">
+							<div class="col-xs-4">
+								<%= attachment_image_tag blog.user, :profile_image, size: "250x200", fallback: 'no_image.png',size: "250x200", class: "content-blog-image" %>
 							</div>
-							<div class="content-text">
-								タイトル：<%= blog.title %><br>
-								<%= blog.updated_at.strftime("%Y-%m-%d") %><br>
-								<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-   								<%= blog.favorites.count %> いいね
+							<div class="col-xs-6 col-xs-offset-2 blog-text-box">
+								<div class="text-center blog-user-name">
+									<p><%= blog.user.name %>さん</p>
+								</div>
+								<div class="text-center blog-content">
+									<p><%= blog.updated_at.strftime("%Y-%m-%d") %><br></p>
+									<p><%= blog.title %></p><br>
+									<p><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   									<%= blog.favorites.count %> いいね</p>
+   									<p><i class="far fa-comment-alt" aria-hidden="true"></i>
+   									<%= blog.blog_comments.count %>件</p>
+								</div>
 							</div>
-						<% end %>
-					</div>
+						</div>
+					<% end %>
 				<% end %>
 			</div>
-		</div>
-		<div class="col-xs-2 col-xs-offset-9">
-			<%= link_to "もっと見る", select_blogs_path %>
+			<div class="col-xs-5 col-xs-offset-4 text-center more-link">
+				<%= link_to "ブログを探す", select_blogs_path, class: "select-button" %>
+			</div>
 		</div>
 	</div>
 
 </div>
-
-
-<%# 星評価 %> 
-<script>
-	$('#star-rate').raty({
-        readOnly: true,
-        size: 36,
-   		starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-    	score: function() {
-     	 return $(this).attr('data-score');
-    	},
-    });
-</script>

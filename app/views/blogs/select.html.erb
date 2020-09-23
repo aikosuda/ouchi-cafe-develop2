@@ -43,7 +43,7 @@
 				<%= link_to blog_path(blog) do %>
 					<div class="row blog-item">
 						<div class="col-xs-4">
-							<%= attachment_image_tag blog, :image, size: "300x250", fallback: 'no_image.png',size: "300x250", class: "content-image" %>
+							<%= attachment_image_tag blog.user, :profile_image, size: "300x250", fallback: 'no_image.png',size: "300x250", class: "content-image" %>
 						</div>
 						<div class="col-xs-6 col-xs-offset-2 blog-text-box">
 							<div class="text-center blog-user-name">

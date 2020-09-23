@@ -7,6 +7,7 @@ class BlogCommentsController < ApplicationController
   	@blog_comment = current_user.blog_comments.new(blog_comment_params)
   	@blog_comment.blog_id = @blog.id
   	@blog_comment.save
+    @blog.create_notification_comment!(current_user, @blog_comment.id)
   end
 
   def destroy
