@@ -5,10 +5,18 @@ Rails.application.routes.draw do
   get 'home/about' => 'home#about'
   post 'home/guest_sign_in' => 'home#new_guest'
 
+  post 'blogs/:blog_id/favorites' => 'favorites#like_blog', as: 'blog_like'
+  delete 'blogs/:blog_id/favorites' => 'favorites#unlike_blog', as: 'blog_unlike'
+
+  post 'reviews/:review_id/favorites' => 'favorites#like_review', as: 'review_like'
+  delete 'reviews/:review_id/favorites' => 'favorites#unlike_review', as: 'review_unlike'
+
   devise_for :users
   resources :users, only: [:edit, :update] do
     #マイページ表示
   	get 'my_page' => 'users#show'
+    #フォローする・外す
+    resource :relationships, only: [:create, :destroy]
 
  end
 
@@ -33,10 +41,10 @@ Rails.application.routes.draw do
       get 'search'
     end
 
-    resource :favorites, only: [:create, :destroy]
     resources :blog_comments, only: [:create, :destroy]
-    
   end
+
+  resources :notifications, only: [:index, :destroy]
 
 
 

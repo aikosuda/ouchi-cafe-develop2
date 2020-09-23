@@ -4,7 +4,7 @@
     <title>OuchiCafe</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/cfa43d2715.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -24,7 +24,11 @@
               <li><%= link_to ' About', home_about_path, class: 'glyphicon glyphicon-link nav-item' %></li>
               <li><%= link_to ' Review', select_reviews_path, class: 'glyphicon glyphicon-pencil nav-item' %></li>
               <li><%= link_to ' Blog', select_blogs_path, class: 'glyphicon glyphicon-bookmark nav-item' %></li>
-              <li><%= link_to ' MyPage', user_my_page_path(current_user), class: 'glyphicon glyphicon-user nav-item' %></li>
+              <li class="mypage-notification"><%= link_to ' MyPage', user_my_page_path(current_user), class: 'glyphicon glyphicon-user nav-item' %>
+                <% if unchecked_notifications.any? %>
+                  <i class="fas fa-circle header-notification"></i>
+                <% end %>
+              </li>
               <li><%= link_to ' logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out nav-item' %></li>
             <% else %>
               <li><%= link_to ' About', home_about_path, class: 'glyphicon glyphicon-link nav-item' %></li>

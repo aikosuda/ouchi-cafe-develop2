@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_09_23_060009) do
 
+
   create_table "blog_comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "blog_id", null: false
