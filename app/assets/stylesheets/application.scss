@@ -50,6 +50,7 @@ a:hover {
 body {
 	background-color: #dcdcdc;
 }
+
 .body-image {
 	width: 100%;
 	height: 100%;
@@ -72,7 +73,7 @@ body {
 .header {
 	background-color: rgba(139,69,19,0.7);
 	padding: 40px 30px;
-	position:fixed;
+	position: fixed;
 }
 .nav-item {
 	font-size: 20px;
@@ -262,7 +263,7 @@ body {
 	font-weight: 200;
 }
 .review-content {
-	margin: 30px;
+	margin: 10px 30px;
 	color: #fff;
 	font-size: 20px;
 	font-weight: 150;
@@ -276,8 +277,48 @@ body {
 .review-link:hover {
 	text-decoration: none;
 }
+/* レビュー一覧　*/
+.review-index-item {
+	width: 30%;
+	height: 400px;
+	margin: 10px;
+	background: rgba(153,102,102,0.9);
+  	border-radius: 30px;
+  	box-shadow: 10px 10px 10px rgba(0,0,0,0.4)
+}
+.review-index-image {
+	padding-top: 20px;
+	padding-left: 30px;
+	padding-bottom: 10px;
+}
 
+/* レビュー詳細　*/
+.review-show-content {
+	width: 100%;
+	padding: 50px 50px 100px 50px;
+	background-color: #fff;
+	border-radius: 50px;
+}
+.product-name {
+	padding: 3px;
+	color: #663300;
+	font-size: 40px;
+	font-weight: 400;
+	background: linear-gradient(transparent 80%, #996666);
+}
+.show-image-box {
+	margin: 30px 0;
+}
 /* ブログ検索　*/
+.tag-box {
+	display: flex;
+	flex-wrap: wrap;
+}
+.tag-item {
+	height: 50px;
+	padding: 2px;
+	width: 33%;
+}
 .blog-item {
 	height: 300px;
 	background-color: #fffafa;
@@ -307,6 +348,83 @@ body {
 	font-size: 20px;
 	color: #696969;
 	font-weight: 500;
+}
+/* ブログ一覧　*/
+.tag-select-button {
+	margin: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 5px 10px ;
+    box-shadow: 0 2px 0 #663300;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(255,255,255,0.9);
+    color: #663300;
+}
+.tag-select-button:hover {
+	background: rgba(102,51,0,0.9);
+	color: #fff;
+	box-shadow: none;
+	text-decoration: none;
+}
+.index-tag-item {
+	height: 50px;
+	padding: 2px;
+	width: 45%;
+}
+/* ブログ詳細　*/
+.profile-box {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.profile-box h4 {
+	color: #663300;
+	font-size: 20px;
+	font-weight: 500;
+}
+.profile-box p {
+	color: #663300;
+	font-size: 15px;
+	font-weight: 700;
+}
+.show-tag-list {
+	margin: 20px 0;
+}
+.favorite-box {
+	margin: 20px;
+}
+.blog-show-content {
+	padding: 30px ;
+	background-color: #fff;
+	margin-bottom: 100px;
+}
+.blog-show-content > p {
+	color: #663300;
+}
+.blog-show-title {
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: double 10px #bc8f8f;
+}
+.blog-show-title h3 {
+	color: #663300;
+	font-size: 30px;
+	font-weight: 700;
+}
+.blog-box {
+	margin-bottom: 30px;
+}
+.comment-count {
+	margin-top: 30px;
+	border-bottom: solid 3px #bc8f8f;
+}
+.comment-count h3 {
+	color: #663300;
+	font-weight: 500;
+}
+.comment {
+	color: #663300;
 }
 /* マイページ　*/
 .mypage-title {
@@ -426,6 +544,32 @@ body {
 .notification-item {
 	padding: 5px;
 }
+/* いいね　*/
+.favorite-form {
+	font-size: 18px;
+}
+
+/* ページネーション　*/
+.pagination {
+	border: none;
+	color: #663300;
+}
+.pagination > .active > a {
+	border: none;
+ 	background: #663300;
+}
+.pagination > li > a {
+	color: #663300;
+	background-color: #fffaf0;
+}
+.pagination > li > a:hover {
+ 	border-radius: 15px;
+ 	color: #663300;
+}
+.pagination > .active > a:hover {
+	background-color: #663300;
+}
+
 /* フッター　*/
 .footer {
 	width: 100%;

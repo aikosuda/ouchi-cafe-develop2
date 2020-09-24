@@ -6,8 +6,6 @@ class Blog < ApplicationRecord
 	has_many :tags, through: :tag_maps
 	has_many :notifications, dependent: :destroy
 
-	attachment :image
-
 	validates :title, presence: true, length:{maximum:100}
 	validates :content, presence: true
 

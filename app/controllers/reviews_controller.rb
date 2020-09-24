@@ -65,8 +65,11 @@ class ReviewsController < ApplicationController
         @users.each do |user|
           @user_reviews = Review.where(user_id: user.id)
         end
-    else
+    elsif @user_or_product == "2" 
         @reviews = Review.search_review(params[:search])
+    else
+        @same_reviews = Review.where(name: params[:review][:name])
+        @same_review_name = params[:review][:name]
     end
     @search = params[:search]
   end

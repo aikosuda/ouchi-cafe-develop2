@@ -1,12 +1,23 @@
-<div id="comment-area">
+<table class="table comment" id="comment-area">
 	<% blog_comment.each do |blog_comment| %>
-		<div class="col-xs-8 col-xs-offset-2" id="comment-<%= blog_comment.id %>">
-			<%= blog_comment.updated_at.strftime("%Y-%m-%d") %>
-			<%= blog_comment.user.name %>
-			<%= blog_comment.comment %>
-			<% if blog_comment.user == current_user %>
-				<%= link_to "削除", blog_blog_comment_path(blog_comment.blog, blog_comment), method: :delete, remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
-			<% end %>
-		</div>
-	<% end %>	
-</div>
+		<tbody id="comment-<%= blog_comment.id %>">
+			<tr>
+				<td>
+					<%= link_to user_my_page_path(blog_comment.user) do %>
+						<%= attachment_image_tag blog_comment.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+					<% end %>
+				</td>
+				<td class="comment-text">
+					<%= blog_comment.user.name %>さん
+				</td>
+				<td class="comment-text"><%= blog_comment.created_at.strftime("%Y-%m-%d") %></td>
+				<td class="comment-text"><%= blog_comment.comment %></td>
+				<% if blog_comment.user == current_user %>
+					<td class="comment-text">
+						<%= link_to "削除",blog_blog_comment_path(blog,blog_comment), method: :delete, remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+					</td>
+				<% end %>
+			</tr>
+		</tbody>
+	<% end %>
+</table>

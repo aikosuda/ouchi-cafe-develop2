@@ -8,7 +8,7 @@ class BlogsController < ApplicationController
 
   def index
     @tag_list = Tag.all
-    @blogs = Blog.page(params[:page]).per(10)
+    @blogs = Blog.page(params[:page]).per(5)
   end
 
   def new
@@ -80,7 +80,7 @@ class BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :content, :image)
+    params.require(:blog).permit(:title, :content)
   end
 
 end

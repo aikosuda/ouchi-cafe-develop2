@@ -2,70 +2,69 @@
 	<div class="row">
 		<div class="content-box">
 			<p class="text-center">ブログ記事検索</p>
-		</div>
-		<div class="col-xs-6">
-			<div class="text-center select"><p>タグから検索</p></div>
-			<% @tag_list.each do |list| %>
+			<div class="col-xs-6">
+				<div class="text-center select"><p>タグから検索</p></div>
 				<div class="text-center select-category">
-					<%= link_to list.name, tag_blogs_path(name: "#{list.name}"), method: :post, :style =>"color:black" %>
+					<%= link_to "一覧", blogs_path, class: "select-button" %>
 				</div>
-			<% end %>
+				<div class="col-xs-10 col-xs-offset-1 tag-box">
+					<% @tag_list.each do |list| %>
+						<div class="text-center tag-item">
+							<%= link_to list.name, tag_blogs_path(name: "#{list.name}"), method: :post, class: "select-button" %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<div class="text-center select"><p>キーワードで検索</p></div>
+				<div class="text-center">
+           			<%= form_tag(search_blogs_path, method: :get ) do %>
+              			<%= select_tag(:option, options_for_select([["ユーザー名", "1"],["ブログタイトル", "2"]])) %>
+              			<%= text_field_tag :search %>
+              			<button name='button' type='submit'>
+                			<i class="fa fa-search"></i>
+              			</button>
+            		<% end %>
+        		</div>
+        		<div class="text-center new-review-box">
+        			<% if user_signed_in? %>
+	        			<%= link_to "記事を投稿する", new_blog_path, class: "new-review" %>
+	    			<% else %>
+	    				<%= link_to "記事を投稿する", new_user_session_path, class: "new-review" %>
+	    			<% end %>
+	    		</div>
+	    	</div>
 		</div>
-		<div class="col-xs-6">
-			<div class="text-center select"><p>キーワードで検索</p></div>
-			<div class="text-center">
-           		<%= form_tag(search_blogs_path, method: :get ) do %>
-              		<%= select_tag(:option, options_for_select([["ユーザー名", "1"],["ブログタイトル", "2"]])) %>
-              		<%= text_field_tag :search %>
-              		<button name='button' type='submit'>
-                		<i class="fa fa-search"></i>
-              		</button>
-            	<% end %>
-        	</div>
-        	<% if user_signed_in? %>
-	        	<%= link_to new_blog_path do %>
-		        	<div class="text-center new-review"><p>記事を投稿する</p></div>
-	    		<% end %>
-	    	<% else %>
-	    		<%= link_to new_user_session_path do %>
-		        	<div class="text-center new-review"><p>記事を投稿する</p></div>
-	    		<% end %>
-	    	<% end %>
-	    </div>
     </div>
 
     <div class="row">
 		<div class="content-box">
 			<p class="text-center">新着ブログ</p>
-		</div>
-		<div class="col-xs-8 col-xs-offset-2 blog-index">
-			<% @blogs.each do |blog| %>
-				<%= link_to blog_path(blog) do %>
-					<div class="row blog-item">
-						<div class="col-xs-4">
-							<%= attachment_image_tag blog.user, :profile_image, size: "300x250", fallback: 'no_image.png',size: "300x250", class: "content-image" %>
-						</div>
-						<div class="col-xs-6 col-xs-offset-2 blog-text-box">
-							<div class="text-center blog-user-name">
-								<p><%= blog.user.name %>さん</p>
+			<div class="col-xs-8 col-xs-offset-2 blog-index">
+				<% @blogs.each do |blog| %>
+					<%= link_to blog_path(blog) do %>
+						<div class="row blog-item">
+							<div class="col-xs-4">
+								<%= attachment_image_tag blog.user, :profile_image, size: "300x250", fallback: 'no_image.png',size: "300x250", class: "content-image" %>
 							</div>
-							<div class="text-center blog-content">
-								<p><%= blog.updated_at.strftime("%Y-%m-%d") %><br><br></p>
-								<p><%= blog.title %></p><br>
-								<p><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-   									<%= blog.favorites.count %> いいね</p>
+							<div class="col-xs-6 col-xs-offset-2 blog-text-box">
+								<div class="text-center blog-user-name">
+									<p><%= blog.user.name %>さん</p>
+								</div>
+								<div class="text-center blog-content">
+									<p><%= blog.updated_at.strftime("%Y-%m-%d") %><br><br></p>
+									<p><%= blog.title %></p><br>
+									<p><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   										<%= blog.favorites.count %> いいね</p>
+								</div>
 							</div>
 						</div>
-					</div>
+					<% end %>
 				<% end %>
-			<% end %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-2 col-xs-offset-10 next-box">
-			<%= link_to reviews_path do %>
-				<p class="text-center">もっとみる</p>
-			<% end %>
+			</div>
+			<div class="col-xs-5 col-xs-offset-4 text-center more-link">
+				<%= link_to "ブログ一覧へ", blogs_path, class: "select-button" %>
+			</div>
 		</div>
 	</div>
 </div>
