@@ -309,6 +309,15 @@ body {
 .show-image-box {
 	margin: 30px 0;
 }
+/* レビュー作成　*/
+.post-review-title {
+	color: #bc8f8f;
+	font-size: 30px;
+	font-weight: 700;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: double 10px #bc8f8f;
+}
 /* ブログ検索　*/
 .tag-box {
 	display: flex;
@@ -425,6 +434,24 @@ body {
 }
 .comment {
 	color: #663300;
+}
+/* ブログ作成　*/
+.new-post {
+	background-color: #faf0e6;
+	padding: 30px;
+	border-radius: 30px;
+}
+.new-post h3 {
+	color: #663300;
+	font-weight: 700;
+}
+.new-post h4, h5, p{
+	color: #663300;
+}
+.new-post span {
+	color: #663300;
+	font-size: 20px;
+	font-weight: 400;
 }
 /* マイページ　*/
 .mypage-title {

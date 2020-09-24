@@ -1,17 +1,33 @@
-<div class="row">
-	<h3>ブログ記事編集</h3>
-	<div class="col-xs-6 col-xs-offset-3">
-		<%= form_with(model: @blog, url: blog_path, local: true) do |f| %>
-			<div class="field">
-				<%= f.label :title %>
-				<%= f.text_field :title %><br>
-				<%= f.label :content %>
-				<%= f.text_area :content %><br>
-					<%= "スペースを入力することで複数のタグを付けることができます" %>
-					<%= "例：料理　豆知識　日記" %>
-					<%= f.text_field :name, value: @tag_list %>
-				<%= f.submit "記事作成" %>
-			</div>
-		<% end %>
+<div class="container container-padding">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1 new-blog">
+			<h3 class="text-center">ブログ記事の編集</h3>
+			<%= form_with(model: @blog, url: blogs_path, local: true) do |f| %>
+				<div class="row">
+					<div class="col-xs-8 col-xs-offset-2">
+						<div class="form-group">
+							<h4><%= f.label :title, "タイトル" %></h4>
+							<%= f.text_area :title, rows: "2", style: "width: 100%;" %>
+						</div>
+						<div class="form-group">
+							<h4><%= f.label :content, "本文" %></h4>
+							<%= f.text_area :content, id: "blog_text"  %>
+						</div>
+						<div class="form-group">
+							<h5><%= "スペースを入力することで複数のタグを付けることができます" %><span><%= "  例：料理　豆知識　日記" %></span></h5>
+							<%= f.text_area :name, value: @tag_list, rows: "2", style: "width: 100%;" %>
+						</div>
+						<div>
+							<%= link_to "戻る", blog_path(@blog), class: "btn btn-primary btn-lg pull-left" %>
+							<%= f.submit "更新", class: "btn btn-warning btn-lg pull-right" %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
 	</div>
 </div>
+
+<script>
+	new FroalaEditor('#blog_text', {});
+</script>

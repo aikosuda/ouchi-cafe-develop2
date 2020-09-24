@@ -1,47 +1,53 @@
 <div class="container container-padding">
-<div class="row">
-	<h3>レビュー新規作成</h3>
-	<%= form_for(@review) do |f| %>
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1 new-post">
+			<h2 class="text-center post-review-title">レビュー新規作成</h2>
+			<%= form_for(@review) do |f| %>
 
-		<div class="col-xs-5">
-			<div class="product-img">
-				<%= attachment_image_tag @review, :image, size: '400x300', id: "file-preview",fallback: "no_image.png",size:'400x300' %>
+			<div class="col-xs-6">
+				<h3>商品画像</h3>
+				<div class="product-img">
+					<%= attachment_image_tag @review, :image, size: '400x300', id: "file-preview",fallback: "no_image.png",size:'400x300' %>
+				</div>
+				<div class="product-new-form">
+					<%= f.attachment_field :image, id: "product_img" %>
+				</div>
 			</div>
-			<div class="product-new-form">
-				<%= f.attachment_field :image, id: "product_img" %>
-			</div>
-		</div>
 
-		<div class="col-xs-5">
-			<table class="table">
-				<tbody>
-					<tr>
-						<th>商品名</th>
-						<td><%= f.text_field :name, class: "form-control" %></td>
-					</tr>
-					<tr>
-						<th>カテゴリー選択</th>
-						<td><%= f.collection_select :review_category_id, ReviewCategory.all, :id, :name, include_blank: "--選択してください--" %></td>
-					</tr>
-					<tr>
-						<th>評価</th>
-						<td id="star" class="form-control" %>
-							<%= f.label :rate %>
-							<%= f.hidden_field :rate, id: :review_rate %>
-						</td>
-					</tr>
-					<tr>
-						<th>レビュー内容</th>
-						<td><%= f.text_area :content, class: "form-control", size: "20x10" %></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="col-xs-2" class="submit-button" style="padding-bottom: 100px;padding-left: 1000px;">
-	    		<%= f.submit '投稿する', class: "btn btn-primary btn-new-register btn-lg" %>
-	    </div>
-	<% end %>
-</div>
+			<div class="col-xs-6">
+				<div class="form-group">
+					<h4><%= f.label :name, "商品名" %></h4>
+					<%= f.text_area :name, rows: "2", style: "width: 70%;" %>
+				</div>
+				<div class="form-group">
+					<h4><%= f.label :manufacturer, "メーカー" %></h4>
+					<%= f.text_area :manufacturer, rows: "2", style: "width: 70%;" %>
+				</div>
+				<div class="form-group">
+					<h4><%= f.label :price, "金額(税抜)" %></h4>
+					<%= f.text_area :price, rows: "2", style: "width: 70%;" %>
+				</div>
+				<div class="form-group">
+					<h4><%= f.label :review_category, "カテゴリー" %></h4>
+					<%= f.collection_select :review_category_id, ReviewCategory.all, :id, :name, include_blank: "--選択してください--" %>
+				</div>
+				<div class="form-group" id="star">
+					<h4><%= f.label :rate, "評価" %></h4>
+					<%= f.hidden_field :rate, id: :review_rate %>
+				</div>
+			</div>
+
+			<div class="col-xs-10 col-xs-offset-1">
+				<div class="form-group">
+					<h4><%= f.label :content, "レビュー" %></h4>
+					<%= f.text_area :content, rows: "15", style: "width: 100%;" %>
+				</div>
+				<div class="text-center">
+					<%= f.submit "記事作成", class: "btn btn-warning btn-lg" %>
+				</div>
+			</div>
+		<% end %>
+	</div>
 </div>
 
 <%# 画像をプレビュー表示する %>

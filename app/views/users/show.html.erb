@@ -5,7 +5,7 @@
 				マイページ
 			</p>
 			<div class="col-xs-6">
-				<%= attachment_image_tag @user, :profile_image, size: '230x230', id: "file-preview",fallback: "no_image.png",size:'230x230', class: "profile-image" %>
+				<%= attachment_image_tag @user, :profile_image, size: '230x230', id: "file-preview",fallback: "no_image2.png",size:'230x230', class: "profile-image" %>
 			</div>
 			<div class="col-xs-6">
 				<h3>
@@ -74,7 +74,7 @@
 											<div class="row">
 												<div class="col-xs-4">
 													<%= link_to user_my_page_path(review.user) do %>
-														<%= attachment_image_tag review.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+														<%= attachment_image_tag review.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image2.png",size:'100x100', class: "profile-image" %>
 													<% end %>
 												</div>
 												<div class="col-xs-8 name-box">
@@ -99,7 +99,7 @@
 									<div class="row mypage-item">
 										<div class="col-xs-4">
 											<%= link_to blog_path(blog) do %>
-													<%= attachment_image_tag blog.user, :profile_image, size: "150x150", fallback: 'no_image.png',size: "150x150", class: "mypage-review-image" %>
+													<%= attachment_image_tag blog.user, :profile_image, size: "150x150", fallback: 'no_image2.png',size: "150x150", class: "mypage-review-image" %>
 											<% end %>
 										</div>
 										<div class="col-xs-4">
@@ -111,7 +111,7 @@
 											<div class="row">
 												<div class="col-xs-4">
 													<%= link_to user_my_page_path(blog.user) do %>
-														<%= attachment_image_tag blog.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+														<%= attachment_image_tag blog.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image2.png",size:'100x100', class: "profile-image" %>
 													<% end %>
 												</div>
 												<div class="col-xs-8 name-box">
@@ -155,7 +155,7 @@
 												<div class="row">
 													<div class="col-xs-4">
 														<%= link_to user_my_page_path(favorite.review.user) do %>
-															<%= attachment_image_tag favorite.review.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+															<%= attachment_image_tag favorite.review.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image2.png",size:'100x100', class: "profile-image" %>
 														<% end %>
 													</div>
 													<div class="col-xs-8 name-box">
@@ -179,7 +179,7 @@
 										<div class="row mypage-item">
 											<div class="col-xs-4">
 												<%= link_to blog_path(favorite.blog) do %>
-													<%= attachment_image_tag favorite.blog.user, :profile_image, size: "150x150", fallback: 'no_image.png',size: "150x150", class: "mypage-review-image" %>
+													<%= attachment_image_tag favorite.blog.user, :profile_image, size: "150x150", fallback: 'no_image2.png',size: "150x150", class: "mypage-review-image" %>
 												<% end %>
 											</div>
 											<div class="col-xs-4">
@@ -197,7 +197,7 @@
 												<div class="row">
 													<div class="col-xs-4">
 														<%= link_to user_my_page_path(favorite.blog.user) do %>
-															<%= attachment_image_tag favorite.blog.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+															<%= attachment_image_tag favorite.blog.user, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image2.png",size:'100x100', class: "profile-image" %>
 														<% end %>
 													</div>
 													<div class="col-xs-8 name-box">
@@ -224,7 +224,7 @@
 									<div class="row mypage-item">
 										<div class="col-xs-4">
 											<%= link_to user_my_page_path(following) do %>
-												<%= attachment_image_tag following, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+												<%= attachment_image_tag following, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image2.png",size:'100x100', class: "profile-image" %>
 											<% end %>
 										</div>
 										<div class="col-xs-6">
@@ -265,7 +265,7 @@
 									<div class="row mypage-item">
 										<div class="col-xs-4">
 											<%= link_to user_my_page_path(follower) do %>
-												<%= attachment_image_tag follower, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image.png",size:'100x100', class: "profile-image" %>
+												<%= attachment_image_tag follower, :profile_image, size: '100x100', id: "file-preview",fallback: "no_image2.png",size:'100x100', class: "profile-image" %>
 											<% end %>
 										</div>
 										<div class="col-xs-6">

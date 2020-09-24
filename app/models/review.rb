@@ -12,7 +12,8 @@ class Review < ApplicationRecord
 		less_than_or_equal_to: 5,
 		greater_than_or_equal_to: 1
 	}, presence: true
-
+  validates :price, numericality: { only_integer: true }
+  
 	# 商品名で検索
 	def self.search_review(search)
     self.where(['name LIKE ?', "%#{search}%"])
