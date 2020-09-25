@@ -52,15 +52,16 @@
       </div>
     </header>
 
-    <div>
-      <%#　flashメッセージ表示場所 %>
-      <% if flash[:notice] %>
-        <div id="flash" class="alert alert-success" role="alert" style="position: absolute; top: 140px; left: 150px;">
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
+    <%#　flashメッセージ表示場所 %>
+    <% if flash[:notice] %>
+      <div id="flash" class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <main>
         <%= yield %>
-    </div>
+    </main>
     <footer class="footer">
       Copyright © OuchiCafe Inc. All Rights Reserved.
     </footer>
