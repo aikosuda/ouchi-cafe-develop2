@@ -1,2 +1,29 @@
-<h1>Home#about</h1>
-<p>Find me in app/views/home/about.html.erb</p>
+<div class="container container-padding">
+	<div class="row about">
+		<div>
+			<span class="about-title">
+				<i class="fas fa-question-circle"></i> About
+			</span>
+			<div class="about-text">
+				<h3>当サイトは、コーヒーに特化した情報共有サイトです。</h3>
+				<h5>外出自粛が続く中で、家で過ごす時間が前よりもっと増えたのではないでしょうか？<br>
+					お家時間をもっと充実したものにするために、毎日のコーヒーの楽しみ方を広げてみませんか？<br>
+					まずはレビューをチェックして、お気に入りの一杯を見つけてみてください。<br>
+				</h5>
+			</div>
+			<div class="text-center more-link">
+				<%= link_to "レビューを探す", select_reviews_path, class: "select-button" %>
+				<%= link_to "ブログを探す", select_blogs_path, class: "select-button" %>
+			</div>
+		</div>
+		<div class="about-subtext text-center">
+			<h3>
+				本サイトをポートフォリオ作品です。<br><br>
+				閲覧はゲストログインをご利用ください。</br>
+			</h3>
+			<div class="text-center more-link">
+				<%= link_to 'ゲストログイン', home_guest_sign_in_path, method: :post, class: "select-button" %>
+			</div>
+		</div>
+	</div>
+</div>

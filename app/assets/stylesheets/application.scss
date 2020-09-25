@@ -219,6 +219,29 @@ body {
 	font-weight: 600;
 }
 
+/* アバウト　*/
+.about {
+	padding: 50px;
+	background-color: #faebd7;
+}
+.about-title {
+	font-size: 30px;
+	border-botom: 2px solid #663300;
+}
+.about-text > h3 {
+	font-size: 30px;
+}
+.about-text > h5 {
+	font-size: 20px;
+	line-height: 40px;
+}
+.about-subtext {
+	background-color: #fff;
+	border-radius: 30px;
+	padding: 50px;
+	font-weight: 700;
+}
+
 /* レビュー検索　*/
 .select {
 	margin-top: 15px;
