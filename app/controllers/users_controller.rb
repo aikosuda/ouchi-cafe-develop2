@@ -10,6 +10,10 @@ class UsersController < ApplicationController
   	@following = @user.following_user
   	@follower = @user.follower_user
     @notifications = current_user.passive_notifications
+
+    #管理者機能用(レビューカテゴリー管理)
+    @review_category = ReviewCategory.new
+    @review_categories = ReviewCategory.page(params[:page]).per(20)
   end
 
   def edit

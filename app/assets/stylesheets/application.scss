@@ -610,6 +610,50 @@ body {
 .follow-box {
 	margin-top: 30px;
 }
+.new-box {
+	width: 30%;
+	height: 50px;
+	margin: 20px;
+	padding-top: 5px;
+    border: 1px solid;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 #663300;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    background-color:rgba(240,128,128,0.9);
+}
+.new-box:hover {
+	box-shadow: none;
+	text-decoration: none;
+	background-color:rgba(205,92,92,0.9);
+}
+.admin-menu {
+	margin: 30px;
+	background-color: rgba(188,143,143,0.8);
+	padding-top: 20px;
+	padding-bottom: 50px;
+	border-radius: 30px;
+}
+.admin-menu h3 {
+	font-size: 30px;
+	font-weight: 600;
+	padding: 2px;
+	border: 10px double #808080;
+	margin-bottom: 30px;
+	color: #111;
+}
+.admin-menu h5 {
+	font-size: 20px;
+	font-weight: 400;
+	color: #111;
+}
+.category-form {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 /* マイページ編集　*/
 .mypage-edit {
 	margin-top: 80px;
