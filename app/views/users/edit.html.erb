@@ -1,2 +1,55 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container container-padding">
+	<div class="row mypage-edit">
+		<div class="col-xs-10 col-xs-offset-1 user-profile">
+			<p class="mypage-title">
+				プロフィール編集
+			</p>
+			<%= form_for(@user) do |f| %>
+			<div class="col-xs-5 text-left">
+				<h4><label for="profile_image">プロフィール画像</label></h4>
+				<div>
+					<%= attachment_image_tag @user, :profile_image, size: '200x200', id: "file-preview", class: "profile-image", fallback: "no_image.png",size:'200x200' %>
+				</div>
+				<div class="product-new-form">
+					<%= f.attachment_field :profile_image, id: "profile_img" %>
+				</div>
+			</div>
+			<div class="col-xs-6 col-xs-offset-1">
+				<div class="form-group">
+					<h4><label class="user_name">名前</label></h4>
+					<%= f.text_area :name, class: "form-control", style: "width: 100%;" %>
+				</div>
+				<div class="form-group">
+					<h4><label class="user_email">メールアドレス</label></h4>
+					<%= f.text_area :email, class: "form-control", style: "width: 100%;" %>
+				</div>
+				<div class="form-group">
+					<h4><label class="user_introduction">自己紹介</label></h4>
+					<%= f.text_area :introduction, class: "form-control", style: "width: 100%;" %>
+				</div>
+			</div>
+			<div class="col-xs-12 text-center">
+				<%= f.submit "編集内容を保存する", class: "btn btn-warning" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<%# 画像をプレビュー表示する %>
+<script type="text/javascript">
+	$(function() {
+	    function readURL(input) {
+	        if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	    		$('#file-preview').attr('src', e.target.result);
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+	$("#profile_img").change(function(){
+	    readURL(this);
+		});
+	});
+</script>

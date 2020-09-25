@@ -65,16 +65,17 @@ class BlogsController < ApplicationController
   end
 
   def search
+    @tag_list = Tag.all
+    @search = params[:search]
     @user_or_title = params[:option]
     if @user_or_title == "1"
         @users = User.search_blog(params[:search])
         @users.each do |user|
-          @user_blogs = Blog.where(user_id: user.id)
+          @user_blogs = Blog.where(user_id: user.id).page(params[:page]).per(5)
         end
     else
-        @blogs = Blog.search_blog(params[:search])
+        @blogs = Blog.search_blog(params[:search]).page(params[:page]).per(5)
     end
-    @search = params[:search]
   end
 
   private

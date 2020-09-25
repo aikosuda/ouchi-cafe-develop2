@@ -17,11 +17,9 @@
 				<div class="text-center select"><p>キーワードで検索</p></div>
 				<div class="text-center">
     	       		<%= form_tag(search_reviews_path, method: :get ) do %>
-        	      		<%= select_tag(:option, options_for_select([["ユーザー名", "1"],["商品名", "2"]])) %>
-            	  		<%= text_field_tag :search %>
-              			<button name='button' type='submit'>
-                			<i class="fa fa-search"></i>
-        	      		</button>
+	        	      	<%= select_tag(:option, options_for_select([["ユーザー名", "1"],["商品名", "2"]])) %>
+    	        	  	<%= text_field_tag :search %>
+    	        	  	<%= submit_tag "検索", class: "btn btn-warning" %>
             		<% end %>
         		</div>
         		<div class="text-center new-review-box">
@@ -42,7 +40,7 @@
 					<div class="review-item">
 						<%= link_to review_path(review) do %>
 							<div>
-								<%= attachment_image_tag review, :image, size: "300x200", fallback: 'no_image.png',size: "300x200", class: "content-image" %>
+								<%= attachment_image_tag review, :image, size: "300x250", fallback: 'no_image.png',size: "300x250", class: "content-image" %>
 							</div>
 							<div class="text-center review-name">
 								<%= review.name %><br>

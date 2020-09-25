@@ -49,6 +49,7 @@ a:hover {
 
 body {
 	background-color: #dcdcdc;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .body-image {
@@ -71,9 +72,22 @@ body {
 /* ヘッダー　*/
 
 .header {
-	background-color: rgba(139,69,19,0.7);
-	padding: 40px 30px;
+	background-color: #663333;
+	padding: 20px;
 	position: fixed;
+}
+.title-image {
+	background-image: url(coffeecup.png);
+	width: 50px;
+	height: 50px;
+	background-size: cover;
+	position: absolute;
+	left: 40px;
+}
+.title-logo {
+	position: absolute;
+	top: 30px;
+	left: 100px;
 }
 .nav-item {
 	font-size: 20px;
@@ -191,7 +205,19 @@ body {
 .top-button-box {
 	padding-top: 40px;
 }
-
+/* ログイン　*/
+.login-area {
+	margin-top: 50px;
+	margin-bottom: 100px;
+	padding: 50px;
+	background-color: #faebd7;
+	border-radius: 30px;
+}
+.login-field {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-weight: 600;
+}
 
 /* レビュー検索　*/
 .select {
@@ -246,7 +272,7 @@ body {
 }
 .review-item {
 	width: 30%;
-	height: 400px;
+	height: 450px;
 	margin: 20px;
 	background: rgba(153,102,102,0.9);
   	border-radius: 30px;
@@ -269,6 +295,7 @@ body {
 	font-weight: 150;
 }
 .review-content p {
+	color: #fff;
 	display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -289,6 +316,10 @@ body {
 .review-index-image {
 	padding-top: 20px;
 	padding-left: 30px;
+	padding-bottom: 10px;
+}
+.search-box {
+	padding-top: 10px;
 	padding-bottom: 10px;
 }
 
@@ -458,8 +489,9 @@ body {
 	font-size: 30px;
 	font-weight: 600;
 	padding: 2px;
-	background: linear-gradient(transparent 60%, #808080);
+	background: linear-gradient(transparent 60%, #bc8f8f);
 	margin-bottom: 30px;
+	color: #111;
 }
 .profile-image {
 	border-radius: 50%;
@@ -549,6 +581,19 @@ body {
 }
 .follow-box {
 	margin-top: 30px;
+}
+/* マイページ編集　*/
+.mypage-edit {
+	margin-top: 80px;
+    margin-bottom: 40px;
+    background-color: #FFFFFF;
+    padding-bottom: 40px;
+    padding-top: 50px;
+}
+.mypage-edit h4 {
+	font-size: 20px;
+    border-bottom: solid 1.5px black;
+    padding: 10px;
 }
 
 /* 通知画面　*/

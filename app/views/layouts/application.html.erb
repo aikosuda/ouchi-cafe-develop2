@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -15,30 +16,35 @@
     <header class="navbar navbar-fixed-top header">
       <div class="container">
 
-        <nav class="nav navbar-nav navbar-left">
-           <span>
-            <%= link_to "おうちcafe", root_path %>
-          </span>
-        </nav>
+        <div>
+          <div class="title-image">
+          </div>
+          <div class="title-logo">
+            <span>
+              <%= link_to "おうちcafe", root_path, class: 'nav-item' %>
+            </span>
+
+          </div>
+        </div>
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li><%= link_to ' About', home_about_path, class: 'glyphicon glyphicon-link nav-item' %></li>
-              <li><%= link_to ' Review', select_reviews_path, class: 'glyphicon glyphicon-pencil nav-item' %></li>
-              <li><%= link_to ' Blog', select_blogs_path, class: 'glyphicon glyphicon-bookmark nav-item' %></li>
-              <li class="mypage-notification"><%= link_to ' MyPage', user_my_page_path(current_user), class: 'glyphicon glyphicon-user nav-item' %>
+              <li><%= link_to ' About', home_about_path, class: 'nav-item' %></li>
+              <li><%= link_to ' Review', select_reviews_path, class: 'nav-item' %></li>
+              <li><%= link_to ' Blog', select_blogs_path, class: 'nav-item' %></li>
+              <li class="mypage-notification"><%= link_to ' MyPage', user_my_page_path(current_user), class: 'nav-item' %>
                 <% if unchecked_notifications.any? %>
                   <i class="fas fa-circle header-notification"></i>
                 <% end %>
               </li>
-              <li><%= link_to ' logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out nav-item' %></li>
+              <li><%= link_to ' logout', destroy_user_session_path, method: :delete, class: 'nav-item' %></li>
             <% else %>
-              <li><%= link_to ' About', home_about_path, class: 'glyphicon glyphicon-link nav-item' %></li>
-              <li><%= link_to ' Review', select_reviews_path, class: 'glyphicon glyphicon-pencil nav-item' %></li>
-              <li><%= link_to ' Blog', select_blogs_path, class: 'glyphicon glyphicon-bookmark nav-item' %></li>
-              <li><%= link_to ' sign up', new_user_registration_path, class: 'glyphicon glyphicon-edit nav-item' %></li>
-              <li><%= link_to ' login', new_user_session_path, class: 'glyphicon glyphicon-log-in nav-item' %></li>
-              <li><%= link_to ' guest login', home_guest_sign_in_path, method: :post, class: 'glyphicon glyphicon-log-in nav-item' %></li>
+              <li><%= link_to ' About', home_about_path, class: 'nav-item' %></li>
+              <li><%= link_to ' Review', select_reviews_path, class: 'nav-item' %></li>
+              <li><%= link_to ' Blog', select_blogs_path, class: 'nav-item' %></li>
+              <li><%= link_to ' sign up', new_user_registration_path, class: 'nav-item' %></li>
+              <li><%= link_to ' login', new_user_session_path, class: 'nav-item' %></li>
+              <li><%= link_to ' guest login', home_guest_sign_in_path, method: :post, class: 'nav-item' %></li>
             <% end %>
           </ul>
         </nav>

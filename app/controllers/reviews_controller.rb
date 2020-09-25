@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.page(params[:page]).per(10)
+    @reviews = Review.page(params[:page]).per(9)
     @review_categories = ReviewCategory.all
   end
 
@@ -59,19 +59,20 @@ class ReviewsController < ApplicationController
   end
 
   def search
+    @review_categories = ReviewCategory.all
     @user_or_product = params[:option]
+    @search = params[:search]
     if @user_or_product == "1"
         @users = User.search_review(params[:search])
         @users.each do |user|
-          @user_reviews = Review.where(user_id: user.id)
+          @user_reviews = Review.where(user_id: user.id).page(params[:page]).per(9)
         end
     elsif @user_or_product == "2" 
-        @reviews = Review.search_review(params[:search])
+        @reviews = Review.search_review(params[:search]).page(params[:page]).per(9)
     else
-        @same_reviews = Review.where(name: params[:review][:name])
+        @same_reviews = Review.where(name: params[:review][:name]).page(params[:page]).per(9)
         @same_review_name = params[:review][:name]
     end
-    @search = params[:search]
   end
 
   private
