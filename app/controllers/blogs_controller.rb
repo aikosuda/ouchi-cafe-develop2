@@ -7,7 +7,8 @@ class BlogsController < ApplicationController
   end
 
   def index
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(6)
+    @tag_lists = Tag.all
     @blogs = Blog.page(params[:page]).per(5)
   end
 
@@ -53,7 +54,8 @@ class BlogsController < ApplicationController
   end
 
   def select
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(6)
+    @tag_lists = Tag.all
     @blogs = Blog.page(params[:page]).per(4)
   end
 

@@ -1,6 +1,6 @@
 <div class="container-fluid main-visual">
 	<div class="row mt-0 justify-content-center main-visual-content">
-		<div class="col-xs-6 col-xs-offset-1 main-visual-text d-flex flex-column justify-content-center">
+		<div class="col-md-6 col-md-offset-1 main-visual-text d-flex flex-column justify-content-center">
 			家でのリラックス時間に...<br><br>
 			お仕事のお供に...<br><br>
 			友人との大切な時間に...<br><br><br>
@@ -13,17 +13,17 @@
 <% unless user_signed_in? %>
 	<div class="container-fuid signup-content">
 		<div class="row">
-			<div class="col-xs-3 col-xs-offset-2 signup-image">
+			<div class="col-md-3 col-md-offset-2 col-xs-6 col-xs-offset-3 signup-image">
 			</div>
-			<div class="col-xs-7 signup-text">
+			<div class="col-md-7 col-xs-12 signup-text">
 				<p>あなたのお気に入りの一杯をシェアしてみませんか？</p><br>
 				<div class="col-xs-12 text-center">
 					<%= link_to 'ゲストログイン', home_guest_sign_in_path, method: :post, class: "select-button" %>
-					<div class="row top-button-box">
-						<div class="col-xs-3 col-xs-offset-3 text-center">
+					<div class="row">
+						<div class="col-md-3 col-md-offset-3 text-center top-button-box">
 							<%= link_to 'ログイン', new_user_session_path, class: "select-button" %>
 						</div>
-						<div class="col-xs-3 text-center">
+						<div class="col-md-3 text-center top-button-box">
 							<%= link_to '新規登録', new_user_registration_path, class: "select-button" %>
 						</div>
 					</div>
@@ -35,7 +35,7 @@
 
 <div class="container-fluid main-content">
 	<div class="row">
-		<div class="col-xs-5 col-xs-offset-1 content-box">
+		<div class="col-md-5 col-md-offset-1 content-box">
 			<p>新着レビュー</p>
 			<div class="content-item-box">
 				<% @reviews.each do |review| %>
@@ -74,7 +74,7 @@
 			</div>
 		</div>
 
-		<div class="col-xs-5 content-box">
+		<div class="col-md-5 content-box">
 			<p>人気ブログ記事</p>
 			<div class="blog_index">
 				<% @blog_ranks.each do |blog| %>
