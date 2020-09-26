@@ -45,4 +45,3 @@
 //= require languages/ja.js
 //= require_tree .
 
-
