@@ -74,6 +74,7 @@ body {
 	background-color: rgba(240,128,128,0.8);
 	color: #fff;
 }
+
 /* ヘッダー　*/
 
 .header {
@@ -93,6 +94,15 @@ body {
 	position: absolute;
 	top: 30px;
 	left: 100px;
+}
+.hm-icon {
+  display: none;
+}
+.nav-wrap.open {
+	display: block;
+}
+.nav-wrap.close {
+	display: none;
 }
 .nav-item {
 	font-size: 20px;
@@ -386,7 +396,7 @@ body {
 .tag-item {
 	height: 50px;
 	padding: 2px;
-	width: 33%;
+	width: 50%;
 }
 .blog-item {
 	height: 300px;
@@ -418,6 +428,37 @@ body {
 	color: #696969;
 	font-weight: 500;
 }
+
+.all-tags {
+	position: fixed;
+	top: 50px;
+	left: 0;
+	background: rgba(245,222,179,0.9);
+	color: #000;
+	width: 100%;
+	min-height: 100%;
+	display: none;
+	z-index: 9;
+}
+.all-tag-box {
+	padding: 100px 0;
+	display: flex;
+	flex-wrap: wrap;
+}
+.all-tag-items {
+	padding: 30px;
+	width: 33%;
+}
+.tag-trigger > h5 {
+	color: #fff;
+	font-weight: bold;
+}
+#close-tag {
+	position: absolute;
+	bottom: 80px;
+	left: 50%;
+}
+
 /* ブログ一覧　*/
 .tag-select-button {
 	margin: 10px;
@@ -608,8 +649,11 @@ body {
 	padding-left: 30px;
 	height: 30px;
 }
+.name-box > h5 {
+	font-size: 20px;
+}
 .follow-box {
-	margin-top: 30px;
+	margin-top: 50px;
 }
 .new-box {
 	width: 30%;
@@ -689,9 +733,15 @@ body {
 .notification-item {
 	padding: 5px;
 }
+.notification-area {
+	padding-bottom: 150px;
+}
+
 /* いいね　*/
 .favorite-form {
-	font-size: 18px;
+	font-size: 15px;
+	padding-top: 10px;
+	padding-left: 20px;
 }
 
 /* ページネーション　*/
@@ -726,11 +776,183 @@ body {
 	font-size: 15px;
 }
 
-/* スマートフォンサイズ（425px）以下　*/
-@media screen and (max-width:425px) {
-  
+/* タブレット端末（768px）以下　*/
+@media screen and (max-width:768px) {
 
+	.container-padding {
+		padding: 80px 20px;
+	}
 
-  
+ 	/* ハンバーガーメニュー　*/
+	#hm-icon{
+  		position: fixed;
+		right: 10px;
+		top: 10px;
+		z-index: 10;
+	}
+	.menu-trigger,
+	.menu-trigger span {
+		display: inline-block;
+		transition: all .4s;
+		box-sizing: border-box;
+	}
+	.menu-trigger {
+		position: relative;
+		width: 35px;
+		height: 30px;
+	}
+	.menu-trigger span {
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: #fff;
+		border-radius: 4px;
+	}
+	.menu-trigger span:nth-of-type(1) {
+		top: 0;
+	}
+	.menu-trigger span:nth-of-type(2) {
+		top: 14px;
+	}
+	.menu-trigger span:nth-of-type(3) {
+		bottom: 0;
+	}
+	.menu-trigger.active span:nth-of-type(1) {
+		-webkit-transform: translateY(14px) rotate(-45deg);
+		transform: translateY(14px) rotate(-45deg);
+		background-color: #fff;
+	}
+	.menu-trigger.active span:nth-of-type(2) {
+		opacity: 0;
+	}
+	.menu-trigger.active span:nth-of-type(3) {
+		-webkit-transform: translateY(-14px) rotate(45deg);
+		transform: translateY(-14px) rotate(45deg);
+		background-color: #fff;
+	}
+
+	.nav-wrap {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: rgba(245,222,179,0.9);
+		color: #000;
+		width: 100%;
+		min-height: 40%;
+		display: none;
+		z-index: 9;
+	}
+	.nav-wrap li{
+		position: absulute;
+		top: 50px;
+		right: 50px;
+		text-align: center;
+		margin-bottom: 20px;
+		padding-bottom: 30px;
+	}
+	.nav-wrap a{
+		color: #000;
+		text-decoration: none;
+		font-weight: bold;
+	}
+
+	.title-image {
+		width: 30px;
+		height: 30px;
+		background-size: cover;
+		position: absolute;
+		left: 20px;
+		top: 10px;
+	}
+	.title-logo {
+		font-size: 10px;
+		position: absolute;
+		top: 10px;
+		left: 60px;
+	}
+
+	/* トップページ　*/
+
+	.main-visual {
+		height: 300px;
+		background-size: cover;
+		background-position: bottom;
+		box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
+	}
+	.main-visual-content {
+ 		width: 100%;
+ 		height: 300px;
+ 		background-color: rgba(0,0,0,0);
+ 		text-align: center;
+ 		padding-top: 100px;
+	}
+	.main-visual-text {
+	color: #fff;
+	}
+	.content-box {
+		margin-top: 30px;
+		padding-bottom: 80px;
+	}
+	.content-review-image {
+		margin-left: 35px;
+	}
+	.signup-text > p {
+		padding-top: 50px;	
+	}
+
+	/* レビュー検索　*/
+
+	.review-item {
+		width: 45%;
+		margin: 15px;
+	}
+
+	/* レビュー一覧　*/
+
+	.review-index {
+		display: flex;
+		border-radius: 30px;
+		flex-wrap: wrap;
+	}
+	.review-index-item {
+		width: 40%;
+		height: 400px;
+		margin: 20px;
+		background: rgba(153,102,102,0.9);
+  		border-radius: 30px;
+  		box-shadow: 10px 10px 10px rgba(0,0,0,0.4)
+	}
+	.review-index-image {
+		padding-left: 40px;
+	}
+
+	/* レビュー詳細　*/
+	.review-show-content {
+		margin-top: 50px;
+
+	}
+
+	/* ブログ検索　*/
+	.tag-box {
+		display: block;
+	}
+	.tag-item {
+		height: 50px;
+		padding: 2px;
+		width: 100%;
+	}
+
+	/* ブログ一覧　*/
+	#index-tag-box {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	/* ブログ詳細　*/
+	.profile-box {
+		padding-bottom: 0;
+	}
+
 }
 
