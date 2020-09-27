@@ -1,6 +1,6 @@
 <div class="container container-padding">
 <div class="row">
-	<div class="col-md-2">
+	<div class="col-md-3">
 		<div class="select"><p>Profile</p></div>
 		<div class="text-center" %>
 			<%= link_to user_my_page_path(@blog.user) do %>
@@ -11,12 +11,14 @@
 			<h4><%= @blog.user.name %>さん</h4>
 			<p><%= @blog.user.introduction %></p>
 		</div>
-		<div class=" text-center follow-box">
-			<% if @blog.user != current_user %>
-				<% if current_user.following?(@blog.user) %>
-    	        	<%= link_to 'フォロー中', user_relationships_path(@blog.user), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
-        	   	<% else %>
-            	  	<%= link_to 'フォローする', user_relationships_path(@blog.user), method: :post, class: "btn btn-default" %>
+		<div class="text-center follow-box">
+			<% if user_signed_in? %>
+				<% if @blog.user != current_user %>
+					<% if current_user.following?(@blog.user) %>
+    		        	<%= link_to 'フォロー中', user_relationships_path(@blog.user), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
+        		   	<% else %>
+            		  	<%= link_to 'フォローする', user_relationships_path(@blog.user), method: :post, class: "btn btn-default" %>
+            		<% end %>
             	<% end %>
             <% end %>
         </div>
@@ -37,7 +39,7 @@
 		</div>
 	</div>
 
-	<div class="col-md-9 col-md-offset-1">
+	<div class="col-md-9">
 		<div class="blog-show-content">
 			<div class="blog-box">
 				<div class="blog-show-title">
@@ -46,17 +48,27 @@
 				<p><%= @blog.updated_at.strftime("%Y-%m-%d") %></p>
 				<div><%== @blog.content %></p></div>
 				<div class="favorite-box pull-right">
-	        		<%= render 'like_form', blog: @blog %>
+	        		<% if user_signed_in? %>
+						<%= render 'like_form', blog: @blog %>
+					<% else %>
+						<div class="favorite-form text-center">
+							<a href="#", onclick="clickEvent()">
+								<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   								<%= @blog.favorites.count %>いいね
+   							</a>
+   						</div>
+   					<% end %>
 	    		</div>
 			</div>
 
-
-			<div class="comment-form">
-				<%= form_with(model: [@blog, @blog_comment], remote: true ) do |f| %>
-					<%= f.text_area :comment, row:'5', class: "form-control", id: "comment-body", placeholder: "コメントをここに" %>
-					<%= f.submit "送信", class: "btn btn-primary pull-right" %>
-				<% end %>
-			</div>
+			<% if user_signed_in? %>
+				<div class="comment-form">
+					<%= form_with(model: [@blog, @blog_comment], remote: true ) do |f| %>
+						<%= f.text_area :comment, row:'5', class: "form-control", id: "comment-body", placeholder: "コメントをここに" %>
+						<%= f.submit "送信", class: "btn btn-primary pull-right" %>
+					<% end %>
+				</div>
+			<% end %>
 			<div>
 				<div class="comment-count">
 					<h3>
@@ -70,3 +82,9 @@
 	</div>
 </div>
 </div>
+
+<script>
+    function clickEvent() {
+        alert('ブログにいいねをするにはログインが必要です');
+    }
+</script>

@@ -22,7 +22,7 @@
 			</div>
 
 			<%# タグ一覧画面表示 %>
-			<div class="row all-tags">
+			<div class="all-tags">
 				<div class="col-md-10 col-md-offset-1 all-tag-box">
 					<% @tag_lists.each do |list| %>
 						<div class="text-center all-tag-items">
@@ -65,10 +65,10 @@
 				<% @blogs.each do |blog| %>
 					<%= link_to blog_path(blog) do %>
 						<div class="row blog-item">
-							<div class="col-xs-4">
-								<%= attachment_image_tag blog.user, :profile_image, size: "300x250", fallback: 'no_image.png',size: "300x250", class: "content-image" %>
+							<div class="col-sm-6 text-center">
+								<%= attachment_image_tag blog.user, :profile_image, size: "200x200", fallback: 'no_image.png',size: "200x200", class: "content-blog-image" %>
 							</div>
-							<div class="col-xs-6 col-xs-offset-2 blog-text-box">
+							<div class="col-sm-6 blog-text-box">
 								<div class="text-center blog-user-name">
 									<p><%= blog.user.name %>さん</p>
 								</div>

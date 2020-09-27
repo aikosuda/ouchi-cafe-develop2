@@ -1,29 +1,28 @@
-<div class="container-fluid main-visual">
+<div class="container main-visual">
 	<div class="row mt-0 justify-content-center main-visual-content">
-		<div class="col-md-6 col-md-offset-1 main-visual-text d-flex flex-column justify-content-center">
-			家でのリラックス時間に...<br><br>
+		<div class="col-md-6 col-md-offset-6 main-visual-text d-flex flex-column justify-content-center">
+			<p>家でのリラックス時間に...<br><br>
 			お仕事のお供に...<br><br>
 			友人との大切な時間に...<br><br><br>
-			<h4>
-				<b>『とっておきの一杯を見つけてみませんか？』</b>
-			</h4>
+			<b>『とっておきの一杯を見つけてみませんか？』</b>
+			</p>
 		</div>
 	</div>
 </div>
 <% unless user_signed_in? %>
-	<div class="container-fuid signup-content">
+	<div class="container signup-content">
 		<div class="row">
-			<div class="col-md-3 col-md-offset-2 col-xs-6 col-xs-offset-3 signup-image">
+			<div class="col-md-3 col-md-offset-1 signup-image">
 			</div>
-			<div class="col-md-7 col-xs-12 signup-text">
+			<div class="col-md-7 signup-text">
 				<p>あなたのお気に入りの一杯をシェアしてみませんか？</p><br>
-				<div class="col-xs-12 text-center">
+				<div class="col-md-12 text-center">
 					<%= link_to 'ゲストログイン', home_guest_sign_in_path, method: :post, class: "select-button" %>
 					<div class="row">
-						<div class="col-md-3 col-md-offset-3 text-center top-button-box">
+						<div class="col-md-4 col-md-offset-2 text-center top-button-box">
 							<%= link_to 'ログイン', new_user_session_path, class: "select-button" %>
 						</div>
-						<div class="col-md-3 text-center top-button-box">
+						<div class="col-md-4 text-center top-button-box">
 							<%= link_to '新規登録', new_user_registration_path, class: "select-button" %>
 						</div>
 					</div>
@@ -33,7 +32,7 @@
 	</div>
 <% end %>
 
-<div class="container-fluid main-content">
+<div class="container main-content">
 	<div class="row">
 		<div class="col-md-5 col-md-offset-1 content-box">
 			<p>新着レビュー</p>
@@ -41,18 +40,20 @@
 				<% @reviews.each do |review| %>
 					<div class="content-item">
 						<%= link_to review_path(review) do %>
-							<div>
-								<%= attachment_image_tag review, :image, size: "150x100", fallback: 'no_image.png',size: "150x100", class: "content-review-image" %>
+							<div class="col-sm-12 col-xs-4">
+								<%= attachment_image_tag review, :image, size: "130x100", fallback: 'no_image.png',size: "130x100", class: "content-review-image" %>
 							</div>
-							<div class="content-text">
-								<%= review.name %><br>
-							</div>
-						<% end %>
-						<div id="star-rate-<%= review.id %>" data-score="<%= review.rate %>", class="content-text"></div><br>
-						<div class="content-text">
-							<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-   							<%= review.favorites.count %> いいね
-   						</div>
+							<div class="col-sm-12 col-xs-8">
+								<div class="content-text">
+									<%= review.name %><br>
+								</div>
+								<div id="star-rate-<%= review.id %>" data-score="<%= review.rate %>", class="content-text"></div><br>
+								<div class="content-text">
+									<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   									<%= review.favorites.count %> いいね
+   								</div>
+   							</div>
+   						<% end %>
 					</div>
 					<%# 星評価 %> 
 					<script>
@@ -69,7 +70,7 @@
 					</script>
 				<% end %>
 			</div>
-			<div class="col-xs-5 col-xs-offset-4 text-center more-link">
+			<div class="col-sm-5 col-sm-offset-4 text-center more-link">
 				<%= link_to "レビューを探す", select_reviews_path, class: "select-button" %>
 			</div>
 		</div>
@@ -80,16 +81,16 @@
 				<% @blog_ranks.each do |blog| %>
 					<%= link_to blog_path(blog) do %>
 						<div class="row blog-item">
-							<div class="col-xs-4">
-								<%= attachment_image_tag blog.user, :profile_image, size: "250x200", fallback: 'no_image.png',size: "250x200", class: "content-blog-image" %>
+							<div class="col-sm-4 text-center">
+								<%= attachment_image_tag blog.user, :profile_image, size: "200x200", fallback: 'no_image.png',size: "200x200", class: "content-blog-image" %>
 							</div>
-							<div class="col-xs-6 col-xs-offset-2 blog-text-box">
+							<div class="col-sm-6 col-sm-offset-2 blog-text-box">
 								<div class="text-center blog-user-name">
 									<p><%= blog.user.name %>さん</p>
 								</div>
 								<div class="text-center blog-content">
-									<p><%= blog.updated_at.strftime("%Y-%m-%d") %><br></p>
-									<p><%= blog.title %></p><br>
+									<p><%= blog.updated_at.strftime("%Y-%m-%d") %></p>
+									<p><%= blog.title %></p>
 									<p><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
    									<%= blog.favorites.count %> いいね</p>
    									<p><i class="far fa-comment-alt" aria-hidden="true"></i>
@@ -100,7 +101,7 @@
 					<% end %>
 				<% end %>
 			</div>
-			<div class="col-xs-5 col-xs-offset-4 text-center more-link">
+			<div class="col-sm-5 col-sm-offset-4 text-center more-link">
 				<%= link_to "ブログを探す", select_blogs_path, class: "select-button" %>
 			</div>
 		</div>

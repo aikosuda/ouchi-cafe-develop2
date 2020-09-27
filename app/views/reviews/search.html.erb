@@ -1,6 +1,6 @@
 <div class="container container-padding">
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-md-3">
             <div class="text-center select"><p>CATEGORY</p></div>
             <div class="text-center select-category">
                 <%= link_to "全カテゴリー", reviews_path, class: "select-button" %>
@@ -24,10 +24,10 @@
             </div>
         </div>
 
-        <div class="col-xs-9">
+        <div class="col-md-9">
             <div class="content-box">
                 <% if @user_or_product == "1" %>
-                    <p>ユーザー名に '<%= @search %>' を含むレビュー一覧</p>
+                    <p class="search-text">ユーザー名に '<%= @search %>' を含むレビュー一覧</p>
                     <% if @user_reviews.blank? %>
                         検索結果が見つかりません
                     <% else %>
@@ -35,18 +35,20 @@
                             <% @user_reviews.each do |review| %>
                                 <div class="review-index-item">
                                     <%= link_to review_path(review) do %>
-                                        <div class= "review-index-image">
-                                        <%= attachment_image_tag review, :image, size: "200x150", fallback: 'no_image.png',size: "200x150" %>
+                                        <div class="col-sm-12 col-xs-5">
+                                        <%= attachment_image_tag review, :image, size: "200x150", fallback: 'no_image.png',size: "200x150", class: "review-index-image" %>
                                         </div>
-                                        <div class="text-center review-name">
-                                            <%= review.name %><br>
-                                            <%= review.updated_at.strftime("%Y-%m-%d") %>
-                                            <div class="text-center" id="star-rate-<%= review.id %>" data-score="<%= review.rate %>"></div>
-                                            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                                            <%= review.favorites.count %>
-                                        </div>
-                                        <div class="review-content">
-                                            <p><%= review.content %></p>
+                                        <div class="col-sm-12 col-xs-7">
+                                            <div class="text-center review-name">
+                                                <%= review.name %><br>
+                                                <%= review.updated_at.strftime("%Y-%m-%d") %>
+                                                <div class="text-center" id="star-rate-<%= review.id %>" data-score="<%= review.rate %>"></div>
+                                                <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                                                <%= review.favorites.count %>
+                                            </div>
+                                            <div class="review-content">
+                                                <p><%= review.content %></p>
+                                            </div>
                                         </div>
                                     <% end %>
                                 </div>
@@ -78,18 +80,20 @@
                             <% @reviews.each do |review| %>
                                 <div class="review-index-item">
                                     <%= link_to review_path(review) do %>
-                                        <div class= "review-index-image">
-                                        <%= attachment_image_tag review, :image, size: "200x150", fallback: 'no_image.png',size: "200x150" %>
+                                        <div class="col-sm-12 col-xs-5">
+                                        <%= attachment_image_tag review, :image, size: "200x150", fallback: 'no_image.png',size: "200x150", class: "review-index-image" %>
                                         </div>
-                                        <div class="text-center review-name">
-                                            <%= review.name %><br>
-                                            <%= review.updated_at.strftime("%Y-%m-%d") %>
-                                            <div class="text-center" id="star-rate-<%= review.id %>" data-score="<%= review.rate %>"></div>
-                                            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                                            <%= review.favorites.count %>
-                                        </div>
-                                        <div class="review-content">
-                                            <p><%= review.content %></p>
+                                        <div class="col-sm-12 col-xs-7">
+                                            <div class="text-center review-name">
+                                                <%= review.name %><br>
+                                                <%= review.updated_at.strftime("%Y-%m-%d") %>
+                                                <div class="text-center" id="star-rate-<%= review.id %>" data-score="<%= review.rate %>"></div>
+                                                <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                                                <%= review.favorites.count %>
+                                            </div>
+                                            <div class="review-content">
+                                                <p><%= review.content %></p>
+                                            </div>
                                         </div>
                                     <% end %>
                                 </div>
@@ -118,18 +122,20 @@
                         <% @same_reviews.each do |review| %>
                             <div class="review-index-item">
                                 <%= link_to review_path(review) do %>
-                                    <div class= "review-index-image">
-                                    <%= attachment_image_tag review, :image, size: "200x150", fallback: 'no_image.png',size: "200x150" %>
+                                    <div class="col-sm-12 col-xs-5">
+                                    <%= attachment_image_tag review, :image, size: "200x150", fallback: 'no_image.png',size: "200x150", class: "review-index-image" %>
                                     </div>
-                                    <div class="text-center review-name">
-                                        <%= review.name %><br>
-                                        <%= review.updated_at.strftime("%Y-%m-%d") %>
-                                        <div class="text-center" id="star-rate-<%= review.id %>" data-score="<%= review.rate %>"></div>
-                                        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                                        <%= review.favorites.count %>
-                                    </div>
-                                    <div class="review-content">
-                                        <p><%= review.content %></p>
+                                    <div class="col-sm-12 col-xs-7">
+                                        <div class="text-center review-name">
+                                            <%= review.name %><br>
+                                            <%= review.updated_at.strftime("%Y-%m-%d") %>
+                                            <div class="text-center" id="star-rate-<%= review.id %>" data-score="<%= review.rate %>"></div>
+                                            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                                            <%= review.favorites.count %>
+                                        </div>
+                                        <div class="review-content">
+                                            <p><%= review.content %></p>
+                                        </div>
                                     </div>
                                 <% end %>
                             </div>

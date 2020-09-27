@@ -1,18 +1,40 @@
 <div class="container container-padding">
     <div class="row">
-        <div class="col-xs-4">
+        <div class="col-md-4">
             <div class="text-center select"><p>タグ</p></div>
             <div class="text-center select-category">
                 <%= link_to "一覧", blogs_path, class: "select-button" %>
             </div>
-            <div class="col-xs-10 col-xs-offset-1 tag-box">
+            <div class="col-md-10 col-md-offset-1 tag-box" id="index-tag-box">
                 <% @tag_list.each do |list| %>
                     <div class="text-center index-tag-item">
                         <%= link_to list.name, tag_blogs_path(name: "#{list.name}"), method: :post, class: "tag-select-button" %>
                     </div>
                 <% end %>
             </div>
-            <div class="col-xs-12">
+
+            <div class="text-center tag-link">
+                <a class="btn btn-warning tag-trigger" href="#">
+                    <h5>もっとみる</h5>
+                </a>
+            </div>
+            <%# タグ一覧画面表示 %>
+            <div class="row all-tags">
+                <div class="col-md-10 col-md-offset-1 all-tag-box">
+                    <% @tag_lists.each do |list| %>
+                        <div class="text-center all-tag-items">
+                            <%= link_to list.name, tag_blogs_path(name: "#{list.name}"), method: :post, class: "select-button" %>
+                        </div>
+                    <% end %>
+                </div>
+                <div class="text-center tag-link" id="close-tag">
+                    <a class="btn btn-primary tag-trigger" href="#" >
+                        <h5>閉じる</h5>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-md-12">
                 <div class="text-center select"><p>Search</p></div>
                 <div>
                     <%= form_tag(search_blogs_path, method: :get ) do %>
@@ -28,7 +50,7 @@
             </div>
         </div>
 
-        <div class="col-xs-8">
+        <div class="col-md-8">
             <div class="content-box">
                 <% if @user_or_title == "1" %>
                     <p class="text-center">ユーザー名に '<%= @search %>' を含むブログ</p>
@@ -39,10 +61,10 @@
                             <% @user_blogs.each do |blog| %>
                                 <%= link_to blog_path(blog) do %>
                                     <div class="row blog-item">
-                                        <div class="col-xs-4">
-                                            <%= attachment_image_tag blog.user, :profile_image, size: "300x250", fallback: 'no_image.png',size: "300x250", class: "content-image" %>
+                                        <div class="col-md-4">
+                                            <%= attachment_image_tag blog.user, :profile_image, size: "200x200", fallback: 'no_image.png',size: "200x200", class: "content-blog-image" %>
                                         </div>
-                                        <div class="col-xs-6 col-xs-offset-2 blog-text-box">
+                                        <div class="col-md-6 col-md-offset-2 blog-text-box">
                                             <div class="text-center blog-user-name">
                                                 <p><%= blog.user.name %>さん</p>
                                             </div>
@@ -70,10 +92,10 @@
                             <% @blogs.each do |blog| %>
                                 <%= link_to blog_path(blog) do %>
                                     <div class="row blog-item">
-                                        <div class="col-xs-4">
-                                            <%= attachment_image_tag blog.user, :profile_image, size: "300x250", fallback: 'no_image.png',size: "300x250", class: "content-image" %>
+                                        <div class="col-md-4">
+                                            <%= attachment_image_tag blog.user, :profile_image, size: "200x200", fallback: 'no_image.png',size: "200x200", class: "content-blog-image" %>
                                         </div>
-                                        <div class="col-xs-6 col-xs-offset-2 blog-text-box">
+                                        <div class="col-md-6 col-md-offset-2 blog-text-box">
                                             <div class="text-center blog-user-name">
                                                 <p><%= blog.user.name %>さん</p>
                                             </div>
