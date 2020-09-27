@@ -67,7 +67,8 @@ class BlogsController < ApplicationController
   end
 
   def search
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(6)
+    @tag_lists = Tag.all
     @search = params[:search]
     @user_or_title = params[:option]
     if @user_or_title == "1"
