@@ -19,35 +19,34 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
-
   # 会員名でレビュー検索
   def self.search_review(search)
-    self.where(['name LIKE ?', "%#{search}%"])
+    where(['name LIKE ?', "%#{search}%"])
   end
 
   # 会員名でブログ検索
   def self.search_blog(search)
-    self.where(['name LIKE ?', "%#{search}%"])
+    where(['name LIKE ?', "%#{search}%"])
   end
 
   # ユーザーをフォローする
   def follow(user_id)
     follower.create(followed_id: user_id)
   end
-  
+
   # ユーザーのフォローを外す
   def unfollow(user_id)
     follower.find_by(followed_id: user_id).destroy
   end
-  
+
   # フォローしていればtrueを返す
   def following?(user)
     following_user.include?(user)
   end
 
-  #　フォローされたら通知
+  # 　フォローされたら通知
   def create_notification_follow!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,
@@ -56,5 +55,4 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
 end
-
 end

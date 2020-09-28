@@ -50,7 +50,6 @@ class BlogsController < ApplicationController
     else
       render :show
     end
-
   end
 
   def select
@@ -73,12 +72,12 @@ class BlogsController < ApplicationController
     @search = params[:search]
     @user_or_title = params[:option]
     if @user_or_title == "1"
-        @users = User.search_blog(params[:search])
-        @users.each do |user|
-          @user_blogs = Blog.where(user_id: user.id).page(params[:page]).per(5)
-        end
+      @users = User.search_blog(params[:search])
+      @users.each do |user|
+        @user_blogs = Blog.where(user_id: user.id).page(params[:page]).per(5)
+      end
     else
-        @blogs = Blog.search_blog(params[:search]).page(params[:page]).per(5)
+      @blogs = Blog.search_blog(params[:search]).page(params[:page]).per(5)
     end
   end
 
@@ -87,5 +86,4 @@ class BlogsController < ApplicationController
   def blog_params
     params.require(:blog).permit(:title, :content)
   end
-
 end

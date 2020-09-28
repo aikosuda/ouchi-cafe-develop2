@@ -25,5 +25,4 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     get blogs_select_url
     assert_response :success
   end
-
 end
