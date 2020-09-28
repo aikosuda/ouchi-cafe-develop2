@@ -91,21 +91,7 @@
 											</div>
 										</div>
 									</div>
-
-									<%# 星評価 %> 
-									<script>
-										$('#star-rate-<%= review.id %>').raty({
-      										readOnly: true,
-        									size: 36,
-   											starOff:  '<%= asset_path('star-off.png') %>',
-        									starOn : '<%= asset_path('star-on.png') %>',
-        									starHalf: '<%= asset_path('star-half.png') %>',
-    										score: function() {
-     	 									return $(this).attr('data-score');
-    										},
-    									});
-									</script>
-
+									<%= render 'shared/star', review: review %>
 								<% end %>
 							<% else %>
 								<p>レビューはまだありません</p>
@@ -183,19 +169,7 @@
 											</div>
 										</div>
 
-										<%# 星評価 %> 
-										<script>
-											$('#star-rate-<%= favorite.review.id %>').raty({
-      											readOnly: true,
-        										size: 36,
-   												starOff:  '<%= asset_path('star-off.png') %>',
-        										starOn : '<%= asset_path('star-on.png') %>',
-        										starHalf: '<%= asset_path('star-half.png') %>',
-    											score: function() {
-     	 										return $(this).attr('data-score');
-    											},
-    										});
-										</script>
+										<%= render 'shared/star', review: favorite.review %>
 
 									<% end %>
 								<% else %>

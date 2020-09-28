@@ -60,7 +60,8 @@ class BlogsController < ApplicationController
   end
 
   def tag
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(6)
+    @tag_lists = Tag.all
     @tag = Tag.find_by(name: params[:name])
     @blogs = @tag.blogs.page(params[:page]).per(10)
     render :index

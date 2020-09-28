@@ -5,6 +5,7 @@
 			<%= form_with(model: @blog, url: blogs_path, local: true) do |f| %>
 				<div class="row">
 					<div class="col-sm-8 col-sm-offset-2">
+						<%= render 'shared/error_messages', object: f.object %>
 						<div class="form-group">
 							<h4><%= f.label :title, "タイトル" %></h4>
 							<%= f.text_area :title, rows: "2", style: "width: 100%;" %>

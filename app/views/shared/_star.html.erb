@@ -1,0 +1,13 @@
+<%# 星評価 %> 
+<script>
+	$('#star-rate-<%= review.id %>').raty({
+        readOnly: true,
+        size: 36,
+   		starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+    	score: function() {
+            return $(this).attr('data-score');
+    	},
+    });
+</script>

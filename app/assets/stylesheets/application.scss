@@ -98,6 +98,9 @@ h2, h3, h4, h5, p {
 	top: 30px;
 	left: 100px;
 }
+.title-logo > span > a:hover {
+	color: #a9a9a9
+}
 .hm-icon {
   display: none;
 }
@@ -725,9 +728,7 @@ h2, h3, h4, h5, p {
 }
 
 /* 通知画面　*/
-.notification-index {
-	height: 250px;
-}
+
 .notification-delete {
 	font-size: 20px;
 }
@@ -775,13 +776,20 @@ h2, h3, h4, h5, p {
 	background-color: #663300;
 }
 
+/* エラーメッセージ　*/
+#error_explanation li {
+	list-style: none;
+	color: red;
+	font-weight: bold;
+
+}
+
 /* フッター　*/
 .footer {
 	width: 100%;
 	height: 100px;
 	background-color: #696969;
 	line-height: 100px;
-	text-align: center;
 	color: #fff;
 	font-size: 15px;
 }

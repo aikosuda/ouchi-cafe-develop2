@@ -1,13 +1,25 @@
 class BlogCommentsController < ApplicationController
   before_action :authenticate_user!
 
+  def new
+    @blog_comment = BlogComment.new
+  end
+
   def create
   	@blog = Blog.find(params[:blog_id])
     @blog_comments = @blog.blog_comments.reverse_order
   	@blog_comment = current_user.blog_comments.new(blog_comment_params)
   	@blog_comment.blog_id = @blog.id
-  	@blog_comment.save
-    @blog.create_notification_comment!(current_user, @blog_comment.id)
+    respond_to do |format|
+     if @blog_comment.save
+        format.html
+        format.js
+        @blog.create_notification_comment!(current_user, @blog_comment.id)
+      else
+        format.html
+        format.js { render 'new'}
+      end
+    end
   end
 
   def destroy

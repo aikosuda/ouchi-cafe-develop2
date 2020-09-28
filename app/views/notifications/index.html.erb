@@ -15,11 +15,8 @@
         				</div>
         				<div class="col-sm-10">
         					<p class="notification-text"><%= notification_form(notification) %>
-        					<span class="moderate-form"><%= " (#{time_ago_in_words(notification.created_at)} ago)" %>
+        					<span class="moderate-form"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %>
        						</span></p>
-       						<% if !@blog_comment.nil? %>
-       							<p class="notification-comment"><%= @blog_comment.comment %></p>
-       						<% end %>
        					</div>
        				</div>
        			<% end %>
