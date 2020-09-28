@@ -38,6 +38,7 @@
                   <i class="fas fa-circle header-notification"></i>
                 <% end %>
               </li>
+              <li><%= link_to ' Contact', new_contact_path, class: 'nav-item' %></li>
               <li><%= link_to ' logout', destroy_user_session_path, method: :delete, class: 'nav-item' %></li>
             <% else %>
               <li><%= link_to ' About', home_about_path, class: 'nav-item' %></li>

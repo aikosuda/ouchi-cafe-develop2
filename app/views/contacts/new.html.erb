@@ -1,0 +1,23 @@
+<div class="container container-padding">
+	<div class="row">
+		<h3 class="text-center">＜お問い合わせフォーム＞</h3>
+		<div class="col-sm-6 col-sm-offset-3 text-center">
+		<%= form_for(@contact) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+			<div class="form-group">
+				<h4><%= f.label :name, "お名前" %></h4>
+				<%= f.text_field :name, style: "width: 100%;" %>
+			</div>
+			<div class="form-group">
+				<h4><%= f.label :email, "返信先メールアドレス" %></h4>
+				<%= f.text_field :email, style: "width: 100%;" %>
+			</div>
+			<div class="form-group">
+				<h4><%= f.label :message, "お問い合わせ内容" %></h4>
+				<%= f.text_area :message, rows: "10", style: "width: 100%;" %>
+			</div>
+			<%= f.submit "送信", class: "btn btn-warning btn-lg" %>
+		<% end %>
+	</div>
+	</div>
+</div>

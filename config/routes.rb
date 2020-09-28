@@ -45,4 +45,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index, :destroy]
 
   resources :review_categories, only: [:create, :destroy]
+
+  resources :contacts, only: [:new, :create]
+
 end
