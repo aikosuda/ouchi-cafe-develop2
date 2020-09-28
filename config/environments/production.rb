@@ -94,9 +94,8 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
-  config.action_mailer.default_url_options = { host: 'ouchi-cafe.work', :protocol => 'http' }
-  host = 'ouchi-cafe.work'
-
+  config.action_mailer.default_url_options = { host: '54.92.52.196' }
+  
   config.action_mailer.smtp_settings = {
       port: 587,
       address: 'smtp.gmail.com',
