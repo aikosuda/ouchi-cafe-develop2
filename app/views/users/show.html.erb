@@ -301,35 +301,37 @@
 		</div>
 	</div>
 
-	<div class="row admin-menu">
-		<div class="col-sm-10 col-sm-offset-1">
-			<h3 class="text-center">管理者機能</h3>
-			<h5 class="text-center">＜レビューカテゴリー追加・削除＞</h5>
-			<div class="col-sm-6 col-sm-offset-3">
-				<div class="category-form">
-					<label>レビューカテゴリー</label>
-					<%= form_for @review_category do |f| %>
-						<%= f.text_field :name, style: "width:70%;" %>
-						<%= f.submit "登録" %>
-					<% end %>
-				</div>
-				<table class="table table-bordered">
-					<tbody>
-						<% @review_categories.each do |category| %>
-							<tr>
-								<td class="active">
-									<%= category.name %>
-								</td>
-								<td class="active">
-									<%= link_to "削除", review_category_path(category), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
-								</td>
-							</tr>
+	<% if user_signed_in? && current_user.admin? %>
+		<div class="row admin-menu">
+			<div class="col-sm-10 col-sm-offset-1">
+				<h3 class="text-center">管理者機能</h3>
+				<h5 class="text-center">＜レビューカテゴリー追加・削除＞</h5>
+				<div class="col-sm-6 col-sm-offset-3">
+					<div class="category-form">
+						<label>レビューカテゴリー</label>
+						<%= form_for @review_category do |f| %>
+							<%= f.text_field :name, style: "width:70%;" %>
+							<%= f.submit "登録" %>
 						<% end %>
-					</tbody>
-				</table>
+					</div>
+					<table class="table table-bordered">
+						<tbody>
+							<% @review_categories.each do |category| %>
+								<tr>
+									<td class="active">
+										<%= category.name %>
+									</td>
+									<td class="active">
+										<%= link_to "削除", review_category_path(category), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+									</td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>
+	<% end %>
 </div>
 
 <%# タブメニュー %>
