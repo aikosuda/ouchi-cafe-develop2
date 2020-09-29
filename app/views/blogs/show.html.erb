@@ -79,8 +79,8 @@
 			<div>
 				<div class="comment-count">
 					<h3>
-						<i class="far fa-comment-alt" aria-hidden="true"></i>
-						<%= @blog_comments.count %>件のコメント
+						<span id="comment-count">
+						<%= @blog_comments.count %></span>件のコメント
 					</h3>
 				</div>
 				<%= render 'comments_area', blog_comment: @blog_comments, blog: @blog %>
