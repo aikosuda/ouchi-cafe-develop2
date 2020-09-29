@@ -976,6 +976,10 @@ h2, h3, h4, h5, p {
 	.profile-box {
 		padding-bottom: 0;
 	}
+	/* マイページ　*/
+	.mypage-review-item {
+		padding-right: 30px;
+	}
 
 }
 
@@ -1165,8 +1169,8 @@ h2, h3, h4, h5, p {
 	}
 
     .mypage-review-image {
-    	width: 70px;
-    	height: 50px;
+    	width: 60px;
+    	height: 45px;
     }
     .mypage-text-box h4, h5{
     	font-size: 10px;

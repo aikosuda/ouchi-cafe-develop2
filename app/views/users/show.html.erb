@@ -4,10 +4,10 @@
 			<p class="mypage-title">
 				マイページ
 			</p>
-			<div class="col-sm-4 col-sm-offset-2 col-xs-4">
+			<div class="col-sm-4 col-sm-offset-1 col-xs-4">
 				<%= attachment_image_tag @user, :profile_image, size: '230x230', id: "file-preview",fallback: "no_image2.png",size:'230x230', class: "mypage-profile-image" %>
 			</div>
-			<div class="col-sm-4 col-xs-8">
+			<div class="col-sm-4 col-sm-offset-1 col-xs-8">
 				<h3 class="text-center">
 					<%= @user.name %>さん
 					<% if @user == current_user %>  
@@ -65,7 +65,7 @@
 									<div class="row mypage-item">
 										<div class="col-sm-4 col-xs-3">
 											<%= link_to review_path(review) do %>
-													<%= attachment_image_tag review, :image, size: "150x100", fallback: 'no_image.png',size: "150x100", class: "mypage-review-image" %>
+													<%= attachment_image_tag review, :image, size: "150x100", fallback: 'no_image.png',size: "160x120", class: "mypage-review-image" %>
 											<% end %>
 										</div>
 										<div class="col-sm-4 col-xs-5 mypage-text-box">
