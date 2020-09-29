@@ -332,6 +332,9 @@
 			</div>
 		</div>
 	<% end %>
+	<div class="text-right">
+		<%= link_to '退会する', user_registration_path, method: :delete, data: {confirm: "過去の投稿は全て消去されます。本当に退会してもよろしいですか？"}, class: "btn btn-danger" %>
+	</div>
 </div>
 
 <%# タブメニュー %>
