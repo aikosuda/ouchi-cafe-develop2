@@ -1,4 +1,6 @@
 class BlogsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+
   def show
     @blog = Blog.find(params[:id])
     @tag_list = @blog.tags
@@ -86,4 +88,5 @@ class BlogsController < ApplicationController
   def blog_params
     params.require(:blog).permit(:title, :content)
   end
+
 end
