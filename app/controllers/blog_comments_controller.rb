@@ -7,7 +7,7 @@ class BlogCommentsController < ApplicationController
 
   def create
     @blog = Blog.find(params[:blog_id])
-    @blog_comments = @blog.blog_comments.reverse_order
+    @blog_comments = @blog.blog_comments
     @blog_comment = current_user.blog_comments.new(blog_comment_params)
     @blog_comment.blog_id = @blog.id
     respond_to do |format|

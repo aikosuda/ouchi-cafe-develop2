@@ -10,12 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_09_25_101606) do
-=======
-ActiveRecord::Schema.define(version: 2020_09_28_110012) do
+ActiveRecord::Schema.define(version: 2020_09_29_095609) do
 
->>>>>>> contact
   create_table "blog_comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "blog_id", null: false
@@ -114,4 +110,5 @@ ActiveRecord::Schema.define(version: 2020_09_28_110012) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
 end
