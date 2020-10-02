@@ -32,15 +32,9 @@
 						<%=link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-default" %>
 					</div>
 				<% else %>
-					<% if current_user.following?(@user) %>
-						<div class="col-sm-12 text-center">
-              				<%= link_to 'フォロー中', user_relationships_path(@user), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
-              			</div>
-            		<% else %>
-            			<div class="col-sm-12 text-center">
-              				<%= link_to 'フォローする', user_relationships_path(@user), method: :post, class: "btn btn-default" %>
-              			</div>
-            		<% end %>
+					<div class="col-sm-12 text-center follow-box">
+						<%= render 'users/follow_form', object: @user %>
+        			</div>
 				<% end %>
 			</div>
 		</div>
@@ -238,13 +232,7 @@
 											</div>
 										</div>
 										<div class="col-sm-2 follow-box text-center">
-											<% if following != current_user %>
-												<% if current_user.following?(following) %>
-    	        	  								<%= link_to 'フォロー中', user_relationships_path(following), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
-        	    								<% else %>
-            	  									<%= link_to 'フォローする', user_relationships_path(following), method: :post, class: "btn btn-default" %>
-            									<% end %>
-            								<% end %>
+											<%= render 'users/follow_form', object: following %>
             							</div>
             						</div>
 								<% end %>
@@ -280,13 +268,8 @@
 											</div>
 										</div>
 										<div class="col-sm-2 follow-box text-center">
-											<% if follower != current_user %>
-												<% if current_user.following?(follower) %>
-    	        	  								<%= link_to 'フォロー中', user_relationships_path(follower), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
-        	    								<% else %>
-            	  									<%= link_to 'フォローする', user_relationships_path(follower), method: :post, class: "btn btn-default" %>
-            									<% end %>
-            								<% end %>
+											<%= render 'users/follow_form', object: follower %>
+		
             							</div>
             						</div>
 								<% end %>

@@ -1,93 +1,85 @@
 <div class="container container-padding">
-<div class="row">
-	<div class="col-md-3">
-		<div class="select"><p>Profile</p></div>
-		<div class="text-center">
-			<% if user_signed_in? %>
-				<%= link_to user_my_page_path(@blog.user) do %>
-					<%= attachment_image_tag @blog.user, :profile_image, size: '200x200', id: "file-preview",fallback: "no_image2.png",size:'200x200', class: "profile-image" %>
-				<% end %>
-			<% else %>
-				<a href="#", onclick="clickEvent()">
-					<%= attachment_image_tag @blog.user, :profile_image, size: '200x200', id: "file-preview",fallback: "no_image2.png",size:'200x200', class: "profile-image" %>
-				</a>
-			<% end %>
-		</div>
-		<div class="text-center profile-box">
-			<h4><%= @blog.user.name %>さん</h4>
-			<p><%= @blog.user.introduction %></p>
-		</div>
-		<div class="text-center follow-box">
-			<% if user_signed_in? %>
-				<% if @blog.user != current_user %>
-					<% if current_user.following?(@blog.user) %>
-    		        	<%= link_to 'フォロー中', user_relationships_path(@blog.user), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
-        		   	<% else %>
-            		  	<%= link_to 'フォローする', user_relationships_path(@blog.user), method: :post, class: "btn btn-default" %>
-            		<% end %>
-            	<% end %>
-            <% end %>
-        </div>
-	    <div class="show-tag-list">
-		    <% @tag_list.each do |list| %>
-				<div class="text-center select-category">
-					<%= link_to list.name, tag_blogs_path(name: "#{list.name}"), method: :post, class: "select-button" %>
-				</div>
-			<% end %>
-		</div>
-		<div class="text-center">
-			<% if @blog.user == current_user %>
-				<%= link_to "編集", edit_blog_path(@blog), class: "btn btn-primary" %>
-				<%= link_to "削除", blog_path(@blog), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
-			<% elsif user_signed_in? && current_user.admin? %>
-				<%= link_to "削除", blog_path(@blog), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
-			<% end %>
-		</div>
-	</div>
-
-	<div class="col-md-9">
-		<div class="blog-show-content">
-			<div class="blog-box">
-				<div class="blog-show-title">
-					<h3><%= @blog.title %></h3>
-				</div>
-				<p><%= @blog.updated_at.strftime("%Y-%m-%d") %></p>
-				<div><%== @blog.content %></p></div>
-				<div class="favorite-box pull-right">
-	        		<% if user_signed_in? %>
-						<%= render 'like_form', blog: @blog %>
-					<% else %>
-						<div class="favorite-form text-center">
-							<a href="#", onclick="clickEvent()">
-								<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-   								<%= @blog.favorites.count %>いいね
-   							</a>
-   						</div>
-   					<% end %>
-	    		</div>
-			</div>
-
-			<% if user_signed_in? %>
-				<div class="comment-form">
-					<%= form_with(model: [@blog, @blog_comment], remote: true ) do |f| %>
-						<div id="result"></div>
-						<%= f.text_area :comment, row:'5', class: "form-control", id: "comment-body", placeholder: "コメントをここに" %>
-						<%= f.submit "送信", class: "btn btn-primary pull-right" %>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="select"><p>Profile</p></div>
+			<div class="text-center">
+				<% if user_signed_in? %>
+					<%= link_to user_my_page_path(@blog.user) do %>
+						<%= attachment_image_tag @blog.user, :profile_image, size: '200x200', id: "file-preview",fallback: "no_image2.png",size:'200x200', class: "profile-image" %>
 					<% end %>
+				<% else %>
+					<a href="#", onclick="clickEvent()">
+						<%= attachment_image_tag @blog.user, :profile_image, size: '200x200', id: "file-preview",fallback: "no_image2.png",size:'200x200', class: "profile-image" %>
+					</a>
+				<% end %>
+			</div>
+			<div class="text-center profile-box">
+				<h4><%= @blog.user.name %>さん</h4>
+				<p><%= @blog.user.introduction %></p>
+			</div>
+			<div class="text-center follow-box">
+				<%= render 'users/follow_form', object: @blog.user %>
+        	</div>
+		    <div class="show-tag-list">
+			    <% @tag_list.each do |list| %>
+					<div class="text-center select-category">
+						<%= link_to list.name, tag_blogs_path(name: "#{list.name}"), method: :post, class: "select-button" %>
+					</div>
+				<% end %>
+			</div>
+			<div class="text-center">
+				<% if @blog.user == current_user %>
+					<%= link_to "編集", edit_blog_path(@blog), class: "btn btn-primary" %>
+					<%= link_to "削除", blog_path(@blog), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+				<% elsif user_signed_in? && current_user.admin? %>
+					<%= link_to "削除", blog_path(@blog), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+				<% end %>
+			</div>
+		</div>
+
+		<div class="col-md-9">
+			<div class="blog-show-content">
+				<div class="blog-box">
+					<div class="blog-show-title">
+						<h3><%= @blog.title %></h3>
+					</div>
+					<p><%= @blog.updated_at.strftime("%Y-%m-%d") %></p>
+					<div><%== @blog.content %></p></div>
+					<div class="favorite-box pull-right">
+	        			<% if user_signed_in? %>
+							<%= render 'like_form', blog: @blog %>
+						<% else %>
+							<div class="favorite-form text-center">
+								<a href="#", onclick="clickEvent()">
+									<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   									<%= @blog.favorites.count %>いいね
+   								</a>
+   							</div>
+   						<% end %>
+	    			</div>
 				</div>
-			<% end %>
-			<div>
-				<div class="comment-count">
-					<h3>
-						<span id="comment-count">
-						<%= @blog_comments.count %></span>件のコメント
-					</h3>
+
+				<% if user_signed_in? %>
+					<div class="comment-form">
+						<%= form_with(model: [@blog, @blog_comment], remote: true ) do |f| %>
+							<div id="result"></div>
+							<%= f.text_area :comment, row:'5', class: "form-control", id: "comment-body", placeholder: "コメントをここに" %>
+							<%= f.submit "送信", class: "btn btn-primary pull-right" %>
+						<% end %>
+					</div>
+				<% end %>
+				<div>
+					<div class="comment-count">
+						<h3>
+							<span id="comment-count">
+							<%= @blog_comments.count %></span>件のコメント
+						</h3>
+					</div>
+					<%= render 'comments_area', blog_comment: @blog_comments, blog: @blog %>
 				</div>
-				<%= render 'comments_area', blog_comment: @blog_comments, blog: @blog %>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 
 <script>

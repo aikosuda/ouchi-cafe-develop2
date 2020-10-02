@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+	<% if object != current_user %>
+		<div id="follow-form-<%= object.id %>">
+			<% if current_user.following?(object) %>
+    			<%= link_to 'フォロー中', user_relationships_path(object), method: :delete, remote: true, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
+        	<% else %>
+	        	<%= link_to 'フォローする', user_relationships_path(object), method: :post, remote: true, class: "btn btn-default" %>
+    		<% end %>
+    	</div>
+	<% end %>
+<% end %>
