@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   def show
-    @review = Review.find(params[:id])
     @review_categories = ReviewCategory.all
   end
 
@@ -25,11 +25,9 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
   end
 
   def update
-    @review = Review.find(params[:id])
     if @review.update(review_params)
       redirect_to review_path(@review), notice: "レビューを更新しました"
     else
@@ -38,7 +36,6 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id])
     if @review.destroy
       redirect_to reviews_path, notice: "レビューを削除しました"
     else
@@ -46,11 +43,13 @@ class ReviewsController < ApplicationController
     end
   end
 
+  # レビュー検索画面表示
   def select
     @review_categories = ReviewCategory.all
     @reviews = Review.page(params[:page]).per(6)
   end
 
+  # カテゴリーで一覧表示
   def category
     @review_category = ReviewCategory.find_by(name: params[:name])
     @reviews = Review.where(review_category_id: @review_category.id).page(params[:page]).per(10)
@@ -58,6 +57,7 @@ class ReviewsController < ApplicationController
     render :index
   end
 
+  # 検索窓からの検索結果表示(or同じ商品で探すのリンク先)
   def search
     @review_categories = ReviewCategory.all
     @user_or_product = params[:option]
@@ -77,7 +77,11 @@ class ReviewsController < ApplicationController
 
   private
 
-  def review_params
-    params.require(:review).permit(:name, :content, :image, :rate, :manufacturer, :price, :review_category_id)
-  end
+    def review_params
+      params.require(:review).permit(:name, :content, :image, :rate, :manufacturer, :price, :review_category_id)
+    end
+
+    def set_review
+      @review = Review.find(params[:id])
+    end
 end

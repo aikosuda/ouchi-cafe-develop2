@@ -1,8 +1,8 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   def show
-    @blog = Blog.find(params[:id])
     @tag_list = @blog.tags
     @blog_comment = BlogComment.new
     @blog_comments = @blog.blog_comments.reverse_order
@@ -30,12 +30,10 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    @blog = Blog.find(params[:id])
     @tag_list = @blog.tags.pluck(:name).join
   end
 
   def update
-    @blog = Blog.find(params[:id])
     tag_list = params[:blog][:name].split(/[[:blank:]]/)
     if @blog.update(blog_params)
       @blog.save_tag(tag_list)
@@ -46,7 +44,6 @@ class BlogsController < ApplicationController
   end
 
   def destroy
-    @blog = Blog.find(params[:id])
     if @blog.destroy
       redirect_to blogs_path, notice: "記事を削除しました"
     else
@@ -54,12 +51,14 @@ class BlogsController < ApplicationController
     end
   end
 
+  # ブログ検索画面表示
   def select
     @tag_list = Tag.page(params[:page]).per(6)
     @tag_lists = Tag.all
     @blogs = Blog.page(params[:page]).per(4)
   end
 
+  # タグで一覧表示
   def tag
     @tag_list = Tag.page(params[:page]).per(6)
     @tag_lists = Tag.all
@@ -68,6 +67,7 @@ class BlogsController < ApplicationController
     render :index
   end
 
+  # 検索窓からの検索結果表示
   def search
     @tag_list = Tag.page(params[:page]).per(6)
     @tag_lists = Tag.all
@@ -85,8 +85,11 @@ class BlogsController < ApplicationController
 
   private
 
-  def blog_params
-    params.require(:blog).permit(:title, :content)
-  end
+    def blog_params
+      params.require(:blog).permit(:title, :content)
+    end
 
+    def set_blog
+      @blog = Blog.find(params[:id])
+    end
 end
