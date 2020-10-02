@@ -26,20 +26,9 @@
 								<div class="name-box">
 									<h5 class="text-center"><%= @review.user.name %>さん</h5>
 								</div>
-								<% if user_signed_in? %>
-									<% if @review.user != current_user %>
-										<% if current_user.following?(@review.user) %>
-											<div class="text-center follow-box">
-    	    		      						<%= link_to 'フォロー中', user_relationships_path(@review.user), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
-    	    		   	  					</div>
-        		   						<% else %>
-        		   							<div class="text-center follow-box">
-            		  							<%= link_to 'フォローする', user_relationships_path(@review.user), method: :post, class: "btn btn-default" %>
-            		  						</div>
-            							<% end %>
-            						<% end %>
-           	 					<% end %>
-								
+								<div class="text-center follow-box">
+									<%= render 'users/follow_form', object: @review.user %>
+        						</div>
 								<% if user_signed_in? %>
 									<%= render 'like_form', review: @review %>
 								<% else %>
