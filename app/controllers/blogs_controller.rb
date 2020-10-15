@@ -74,10 +74,7 @@ class BlogsController < ApplicationController
     @search = params[:search]
     @user_or_title = params[:option]
     if @user_or_title == "1"
-      @users = User.search_blog(params[:search])
-      @users.each do |user|
-        @user_blogs = Blog.where(user_id: user.id).page(params[:page]).per(5)
-      end
+      @user_blogs = Blog.where(user_id: User.search_blog(params[:search]).pluck(:id)).page(params[:page]).per(9)
     else
       @blogs = Blog.search_blog(params[:search]).page(params[:page]).per(5)
     end

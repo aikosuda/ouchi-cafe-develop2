@@ -63,10 +63,7 @@ class ReviewsController < ApplicationController
     @user_or_product = params[:option]
     @search = params[:search]
     if @user_or_product == "1"
-      @users = User.search_review(params[:search])
-      @users.each do |user|
-        @user_reviews = Review.where(user_id: user.id).page(params[:page]).per(9)
-      end
+      @user_reviews = Review.where(user_id: User.search_review(params[:search]).pluck(:id)).page(params[:page]).per(9)
     elsif @user_or_product == "2"
       @reviews = Review.search_review(params[:search]).page(params[:page]).per(9)
     else
