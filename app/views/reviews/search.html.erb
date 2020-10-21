@@ -21,10 +21,23 @@
                         <%= render 'review_index', reviews: @reviews %>
                     <% end %>
                 <% else %>
-                    <p><%= @same_review_name %> のレビュー一覧</p>
+                    <p>商品名：<%= @same_review_name %><span id="average">平均評価：</span></p>
                     <%= render 'review_index', reviews: @same_reviews %>
                 <% end %>
             </div>
         </div>
     </div>
 </div>
+<%# レビューの評価平均を表示 %>
+<script>
+    $('#average').raty({
+    size: 36,
+    score: "<%=@same_reviews.average(:rate).to_f.round(1) %>",//星の平均値。小数点第１。
+    starOff: "<%=asset_path('star-off.png')%>",
+    starOn: "<%=asset_path('star-on.png')%>",
+    starHalf: "<%=asset_path('star-half.png')%>",
+    scoreName: 'review[star]',
+    half: true,
+    readOnly: true,
+  });
+</script>
