@@ -14,8 +14,8 @@
  *= require_self
  */
 
-@import "bootstrap-sprockets";  /*ここを追加*/
-@import "bootstrap";            /*ここを追加*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import "summernote-bs4";
 @import "summernote-custom-theme.min";
 @import "font-awesome";

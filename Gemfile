@@ -75,7 +75,6 @@ gem 'font-awesome-rails'
 gem 'dotenv-rails'
 gem 'summernote-rails', '~> 0.8.10.0'
 gem 'rails-i18n'
-gem 'simple_form'
 gem 'rubocop-airbnb'
 group :production do
   gem 'mysql2'
