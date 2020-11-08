@@ -124,8 +124,8 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.13.1)
-    font-awesome-sass (5.4.1)
-      sassc (>= 1.11)
+    font-awesome-rails (4.7.0.5)
+      railties (>= 3.2, < 6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     http-accept (1.7.0)
@@ -219,6 +219,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
+    rails-i18n (5.1.3)
+      i18n (>= 0.7, < 2)
+      railties (>= 5.0, < 6)
     railties (5.2.4.3)
       actionpack (= 5.2.4.3)
       activesupport (= 5.2.4.3)
@@ -276,11 +279,12 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sassc (2.4.0)
-      ffi (~> 1.9)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    simple_form (5.0.3)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -301,6 +305,8 @@ GEM
     sshkit (1.21.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    summernote-rails (0.8.10.0)
+      railties (>= 3.1)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -325,8 +331,6 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    wysiwyg-rails (3.2.2)
-      railties (>= 3.2, < 7.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -346,7 +350,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
-  font-awesome-sass (~> 5.4.1)
+  font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
   kaminari (~> 1.2.1)
@@ -355,19 +359,21 @@ DEPENDENCIES
   pry-byebug
   puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.3)
+  rails-i18n
   refile!
   refile-mini_magick
   rubocop-airbnb
   sass-rails (~> 5.0)
   selenium-webdriver
+  simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
+  summernote-rails (~> 0.8.10.0)
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-  wysiwyg-rails
 
 RUBY VERSION
    ruby 2.5.7p206

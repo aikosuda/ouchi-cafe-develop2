@@ -7,18 +7,18 @@
 					<div class="col-sm-8 col-sm-offset-2">
 						<%= render 'shared/error_messages', object: f.object %>
 						<div class="form-group">
-							<h4><%= f.label :title, "タイトル" %></h4>
-							<%= f.text_area :title, rows: "2", style: "width: 100%;" %>
+    						<h4><%= f.label :title, "タイトル" %></h4>
+    						<%= f.text_area :title, rows: "2", style: "width: 100%;" %>
 						</div>
 						<div class="form-group">
-							<h4><%= f.label :content, "本文" %></h4>
-							<%= f.text_area :content, id: "blog_text"  %>
+    						<h4><%= f.label :content, "本文" %></h4>
+    						<%= f.text_area :content,'data-provider': :summernote %>
 						</div>
 						<div class="form-group">
 							<h5><%= "スペースを入力することで複数のタグを付けることができます。" %>
 								<span><%= "例：料理　豆知識　日記" %></span>
 							</h5>
-							<%= f.text_area :name, rows: "2", style: "width: 100%;" %>
+							<%= f.text_area :name, value: @tag_list, rows: "2", style: "width: 100%;" %>
 						</div>
 						<div class="text-center">
 							<%= f.submit "記事作成", class: "btn btn-warning btn-lg" %>
@@ -29,8 +29,3 @@
 		</div>
 	</div>
 </div>
-<script>
-	new FroalaEditor('#blog_text', {});
-</script>
-
-

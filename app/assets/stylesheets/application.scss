@@ -13,24 +13,12 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "froala_editor.min";
-@import "froala_style.min";
-@import 'plugins/char_counter.min.css';
-@import 'plugins/code_view.min.css';
-@import 'plugins/colors.min.css';
-@import 'plugins/emoticons.min.css';
-@import 'plugins/file.min.css';
-@import 'plugins/fullscreen.min.css';
-@import 'plugins/image_manager.min.css';
-@import 'plugins/image.min.css';
-@import 'plugins/line_breaker.min.css';
-@import 'plugins/quick_insert.min.css';
-@import 'plugins/table.min.css';
-@import 'plugins/video.min.css';
-@import 'font-awesome-sprockets';
-@import 'font-awesome';
+
+@import "bootstrap-sprockets";  /*ここを追加*/
+@import "bootstrap";            /*ここを追加*/
+@import "summernote-bs4";
+@import "summernote-custom-theme.min";
+@import "font-awesome";
 
 * {
 	margin: 0;
@@ -50,9 +38,8 @@ a:hover {
 body {
 	background-color: #dcdcdc;
 	font-family: 'Open Sans', sans-serif;
-	
 }
-h2, h3, h4, h5, p {
+h2, h3, h4, h5 {
 	color: #663300;
 }
 
@@ -563,7 +550,7 @@ h2, h3, h4, h5, p {
 	color: #663300;
 	font-weight: 700;
 }
-.new-post h4, h5, p{
+.new-post h4, h5{
 	color: #663300;
 }
 .new-post span {
