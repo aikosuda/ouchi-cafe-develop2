@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_095609) do
+ActiveRecord::Schema.define(version: 2020_11_08_082432) do
 
   create_table "blog_comments", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_095609) do
   create_table "blogs", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
-    t.text "content", null: false
+    t.text "content", limit: 4294967295, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
