@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets  
+//= require bootstrap-sprockets
 //= require summernote/summernote-bs4.min
 //= require summernote-init
 //= require rails-ujs
@@ -19,7 +19,7 @@
 //= require turbolinks
 //= require_tree .
 
-$.summernote.options.lang = "ja-JP";
+
 
 document.addEventListener("turbolinks:load", function() {
 

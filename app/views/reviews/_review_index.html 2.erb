@@ -1,0 +1,27 @@
+<div class="review-index">
+	<% reviews.each do |review| %>
+		<div class="review-index-item">
+			<%= link_to review_path(review) do %>
+				<div class= "col-sm-12 col-xs-5">
+					<%= attachment_image_tag review, :image, size: "200x150", fallback: 'no_image.png',size: "200x150", class: "review-index-image" %>
+				</div>
+				<div class="col-sm-12 col-xs-7">
+					<div class="text-center review-name">
+						<%= review.name %><br>
+						<%= review.updated_at.strftime("%Y-%m-%d") %>
+						<div class="text-center" id="star-rate-<%= review.id %>" data-score="<%= review.rate %>"></div>
+						<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   						<%= review.favorites.count %>
+					</div>
+					<div class="review-content">
+						<p><%= review.content %></p>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<%= render 'shared/star', review: review %>
+	<% end %>
+</div>
+<div class="text-center">
+	<%= paginate reviews %>
+</div>
