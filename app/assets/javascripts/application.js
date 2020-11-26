@@ -45,4 +45,23 @@
 //= require languages/ja.js
 //= require_tree .
 
+document.addEventListener("turbolinks:load", function() {
 
+
+$(function() {
+  $('.menu-trigger').on('click', function(event) {
+    $(this).toggleClass('active');
+    $('.nav-wrap').fadeToggle();
+    event.preventDefault();
+  });
+});
+
+$(function() {
+  $('.tag-trigger').on('click', function(event) {
+    $(this).toggleClass('active');
+    $('.all-tags').fadeToggle();
+    event.preventDefault();
+  });
+});
+
+})

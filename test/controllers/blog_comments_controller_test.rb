@@ -5,5 +5,4 @@ class BlogCommentsControllerTest < ActionDispatch::IntegrationTest
     get blog_comments_show_url
     assert_response :success
   end
-
 end

@@ -1,25 +1,22 @@
 <div class="container container-padding">
-	<div class="row">
+	<div class="row notification-area">
 		<h3 class="text-center">通知</h3>
     	<p><%= link_to "全通知削除", notification_path(@notifications), method: :delete ,class: "fas fa-trash notification-delete" %></p>
     	<% if @notifications.exists? %>
-    		<div class="col-xs-8 col-xs-offset-2 notification-index">
+    		<div class="col-sm-8 col-sm-offset-2 notification-index">
     			<% @notifications.each do |notification| %>
     				<div class="row notification-item">
-    					<div class="col-xs-2">
+    					<div class="col-sm-2">
 		        			<span>
         						<%= link_to user_my_page_path(notification.visitor) do %>
        								<%= attachment_image_tag notification.visitor, :profile_image, size: "50x50", fallback: 'no_image.png',size: "50x50", class: "mypage-review-image" %>
        							<% end %>
         					</span>
         				</div>
-        				<div class="col-xs-10">
+        				<div class="col-sm-10">
         					<p class="notification-text"><%= notification_form(notification) %>
-        					<span class="moderate-form"><%= " (#{time_ago_in_words(notification.created_at)} ago)" %>
+        					<span class="moderate-form"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %>
        						</span></p>
-       						<% if !@blog_comment.nil? %>
-       							<p class="notification-comment"><%= @blog_comment.comment %></p>
-       						<% end %>
        					</div>
        				</div>
        			<% end %>

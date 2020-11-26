@@ -1,20 +1,21 @@
 <div class="container container-padding">
 	<div class="row">
-		<div class="col-xs-10 col-xs-offset-1 new-post">
+		<div class="col-md-10 col-md-offset-1 new-post">
 			<h2 class="text-center post-review-title">レビュー編集</h2>
 			<%= form_for(@review) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
 
-			<div class="col-xs-6">
+			<div class="col-md-6">
 				<h3>商品画像</h3>
 				<div class="product-img">
-					<%= attachment_image_tag @review, :image, size: '400x300', id: "file-preview",fallback: "no_image.png",size:'400x300' %>
+					<%= attachment_image_tag @review, :image, size: '400x300', id: "file-preview",fallback: "no_image.png",size:'400x300', class: "review-show-image" %>
 				</div>
 				<div class="product-new-form">
 					<%= f.attachment_field :image, id: "product_img" %>
 				</div>
 			</div>
 
-			<div class="col-xs-6">
+			<div class="col-md-6">
 				<div class="form-group">
 					<h4><%= f.label :name, "商品名" %></h4>
 					<%= f.text_area :name, rows: "2", style: "width: 70%;" %>
@@ -38,7 +39,7 @@
 				</div>
 			</div>
 
-			<div class="col-xs-10 col-xs-offset-1">
+			<div class="col-md-10 col-md-offset-1">
 				<div class="form-group">
 					<h4><%= f.label :content, "レビュー" %></h4>
 					<%= f.text_area :content, rows: "15", style: "width: 100%;" %>

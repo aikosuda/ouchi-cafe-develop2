@@ -1,18 +1,10 @@
 <div class="container container-padding">
 	<div class="row">
-		<div class="col-xs-3">
-			<div class="text-center select"><p>CATEGORY</p></div>
-			<div class="text-center select-category">
-				<%= link_to "全カテゴリー", reviews_path, class: "select-button" %>
-			</div>
-			<% @review_categories.each do |category| %>
-				<div class="text-center select-category">
-					<%= link_to category.name, category_reviews_path(name: "#{category.name}"),method: :post, class: "select-button" %>
-				</div>
-			<% end %>
+		<div class="col-md-3">
+			<%= render 'review_sidebar', review_categories: @review_categories %>
 		</div>
 
-		<div class="col-xs-9">
+		<div class="col-md-9">
 			<div class="review-show-content">
 				<div class="review-show-title">
 					<p class="product-name">
@@ -20,45 +12,49 @@
 					</p>
 				</div>
 				<div class="row show-image-box">
-					<div class="col-xs-7">
-						<%= attachment_image_tag @review, :image, size: '400x300', id: "file-preview",fallback: "no_image.png",size:'400x300' %>
+					<div class="col-sm-7">
+						<%= attachment_image_tag @review, :image, size: '400x300', id: "file-preview",fallback: "no_image.png",size:'400x300', class: "review-show-image" %>
 					</div>
-					<div class="col-xs-5">
-						<div class="row">
-							<div class="col-xs-4">
+					<div class="col-sm-5">
+						
+							<div class="text-center col-sm-12 col-xs-5">
 								<%= link_to user_my_page_path(@review.user) do %>
 									<%= attachment_image_tag @review.user, :profile_image, size: '150x150', id: "file-preview",fallback: "no_image2.png",size:'150x150', class: "profile-image" %>
 								<% end %>
 							</div>
-							<div class="col-xs-6 col-xs-offset-1 name-box">
-								<h5><%= @review.user.name %>さん</h5>
+							<div class="col-sm-12 col-xs-7">
+								<div class="name-box">
+									<h5 class="text-center"><%= @review.user.name %>さん</h5>
+								</div>
 								<% if user_signed_in? %>
-									<div class="follow-box">
-										<% if @review.user != current_user %>
-											<% if current_user.following?(@review.user) %>
-    	    	    	  						<%= link_to 'フォロー中', user_relationships_path(@review.user), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
-        	   								<% else %>
-            	  								<%= link_to 'フォローする', user_relationships_path(@review.user), method: :post, class: "btn btn-default" %>
-            								<% end %>
+									<% if @review.user != current_user %>
+										<% if current_user.following?(@review.user) %>
+											<div class="text-center follow-box">
+    	    		      						<%= link_to 'フォロー中', user_relationships_path(@review.user), method: :delete, data: {confirm: "フォローを外しますか？"}, class: "btn btn-info" %>
+    	    		   	  					</div>
+        		   						<% else %>
+        		   							<div class="text-center follow-box">
+            		  							<%= link_to 'フォローする', user_relationships_path(@review.user), method: :post, class: "btn btn-default" %>
+            		  						</div>
             							<% end %>
-            						</div>
-            					<% end %>
-							</div>
-						</div>
-						<% if user_signed_in? %>
-							<%= render 'like_form', review: @review %>
-						<% else %>
-							<div class="favorite-form text-center">
-								<a href="#", onclick="clickEvent()">
-									<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-   									<%= @review.favorites.count %>いいね
-   								</a>
+            						<% end %>
+           	 					<% end %>
+								
+								<% if user_signed_in? %>
+									<%= render 'like_form', review: @review %>
+								<% else %>
+									<div class="favorite-form text-center">
+										<a href="#", onclick="clickEvent()">
+											<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   											<%= @review.favorites.count %>いいね
+   										</a>
+   									</div>
+   								<% end %>
    							</div>
-   						<% end %>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-4">
+					<div class="col-sm-4">
 						<table class="table table-bordered">
 							<tbody>
 								<tr>
@@ -80,7 +76,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="col-xs-8">
+					<div class="col-sm-8">
 						<div class="panel panel-default">
 							<div class="panel-heading text-center">
 								<h4>レビュー</h4>
@@ -102,7 +98,7 @@
 					<% if @review.user == current_user %>
 						<%= link_to "編集", edit_review_path(@review), class: "btn btn-primary" %>
 						<%= link_to "削除", review_path(@review), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
-					<% elsif current_user.admin? %>
+					<% elsif user_signed_in? && current_user.admin? %>
 						<%= link_to "削除", review_path(@review), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
 					<% end %>
 				</div>
@@ -111,22 +107,11 @@
 	</div>
 </div>
 
-<script>
-	$('#star-rate-<%= @review.id %>').raty({
-        readOnly: true,
-        size: 36,
-   		starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-    	score: function() {
-     	 return $(this).attr('data-score');
-    	},
-    });
-</script>
+<%= render 'shared/star', review: @review %>
 
 <script>
     function clickEvent() {
-        alert('レビューにいいねをするにはログインが必要です');
+        alert('この機能を使用するにはログインが必要です');
     }
 </script>
 

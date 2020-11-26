@@ -1,5 +1,36 @@
 ja:
   activerecord:
+    models:
+      user: ユーザー
+      blog: ブログ
+      blog_comment: ブログコメント
+      faorite: いいね
+      notification: 通知
+      review: レビュー
+      review_category: レビューカテゴリー
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        introduction: 自己紹介文
+      review:
+        name: 商品名
+        content: レビュー
+        rate: 評価
+        price: 金額
+        manufacturer: メーカー名
+        review_category: カテゴリー
+      review_category:
+        name: カテゴリー名
+      blog:
+        title: タイトル
+        content: 本文
+      tag:
+        name: タグ
+      blog_comment:
+        comment: コメント
+
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

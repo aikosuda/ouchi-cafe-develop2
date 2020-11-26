@@ -33,7 +33,7 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to review_path(@review), notice: "レビューを更新しました"
     else
-      render  :edit
+      render :edit
     end
   end
 
@@ -63,15 +63,15 @@ class ReviewsController < ApplicationController
     @user_or_product = params[:option]
     @search = params[:search]
     if @user_or_product == "1"
-        @users = User.search_review(params[:search])
-        @users.each do |user|
-          @user_reviews = Review.where(user_id: user.id).page(params[:page]).per(9)
-        end
-    elsif @user_or_product == "2" 
-        @reviews = Review.search_review(params[:search]).page(params[:page]).per(9)
+      @users = User.search_review(params[:search])
+      @users.each do |user|
+        @user_reviews = Review.where(user_id: user.id).page(params[:page]).per(9)
+      end
+    elsif @user_or_product == "2"
+      @reviews = Review.search_review(params[:search]).page(params[:page]).per(9)
     else
-        @same_reviews = Review.where(name: params[:review][:name]).page(params[:page]).per(9)
-        @same_review_name = params[:review][:name]
+      @same_reviews = Review.where(name: params[:review][:name]).page(params[:page]).per(9)
+      @same_review_name = params[:review][:name]
     end
   end
 
@@ -80,6 +80,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:name, :content, :image, :rate, :manufacturer, :price, :review_category_id)
   end
-
-
 end

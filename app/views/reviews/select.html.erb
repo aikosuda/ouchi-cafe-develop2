@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="content-box">
 			<p class="text-center">レビュー検索</p>
-			<div class="col-xs-6">
+			<div class="col-sm-6">
 				<div class="text-center select"><p>カテゴリーから検索</p></div>
 				<div class="text-center select-category">
 					<%= link_to "全カテゴリー", reviews_path, class: "select-button" %>
@@ -13,7 +13,7 @@
 					</div>
 				<% end %>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-sm-6">
 				<div class="text-center select"><p>キーワードで検索</p></div>
 				<div class="text-center">
     	       		<%= form_tag(search_reviews_path, method: :get ) do %>
@@ -39,39 +39,29 @@
 				<% @reviews.each do |review| %>
 					<div class="review-item">
 						<%= link_to review_path(review) do %>
-							<div>
+							<div class="col-sm-12 col-xs-5">
 								<%= attachment_image_tag review, :image, size: "300x250", fallback: 'no_image.png',size: "300x250", class: "content-image" %>
 							</div>
-							<div class="text-center review-name">
-								<%= review.name %><br>
-								<%= review.updated_at.strftime("%Y-%m-%d") %>
-							</div>
-							<div id="star-rate-<%= review.id %>" data-score="<%= review.rate %>", class="text-center"></div>
-							<div class="content-text">
-								<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-   								<%= review.favorites.count %>
-   							</div>
-							<div class="review-content">
-								<p><%= review.content %></p>
+							<div class="col-sm-12 col-xs-7">
+								<div class="text-center review-name">
+									<%= review.name %><br>
+									<%= review.updated_at.strftime("%Y-%m-%d") %>
+								</div>
+								<div id="star-rate-<%= review.id %>" data-score="<%= review.rate %>", class="text-center"></div>
+								<div class="content-text">
+									<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   									<%= review.favorites.count %>
+   								</div>
+								<div class="review-content">
+									<p><%= review.content %></p>
+								</div>
 							</div>
 						<% end %>
 					</div>
-					<%# 星評価 %> 
-					<script>
-						$('#star-rate-<%= review.id %>').raty({
-        					readOnly: true,
-        					size: 36,
-   							starOff:  '<%= asset_path('star-off.png') %>',
-        					starOn : '<%= asset_path('star-on.png') %>',
-        					starHalf: '<%= asset_path('star-half.png') %>',
-    						score: function() {
-     							return $(this).attr('data-score');
-    						},
-    					});
-					</script>
+					<%= render 'shared/star', review: review %>
 				<% end %>
 			</div>
-			<div class="col-xs-5 col-xs-offset-4 text-center more-link">
+			<div class="col-md-5 col-md-offset-4 text-center more-link">
 			<%= link_to "レビュー一覧へ", reviews_path, class: "select-button" %>
 			</div>
 		</div>

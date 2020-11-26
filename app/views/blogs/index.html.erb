@@ -1,34 +1,10 @@
 <div class="container container-padding">
 	<div class="row">
-		<div class="col-xs-4">
-			<div class="text-center select"><p>タグ</p></div>
-			<div class="text-center select-category">
-				<%= link_to "一覧", blogs_path, class: "select-button" %>
-			</div>
-			<div class="col-xs-10 col-xs-offset-1 tag-box">
-				<% @tag_list.each do |list| %>
-					<div class="text-center index-tag-item">
-						<%= link_to list.name, tag_blogs_path(name: "#{list.name}"), method: :post, class: "tag-select-button" %>
-					</div>
-				<% end %>
-			</div>
-			<div class="col-xs-12">
-                <div class="text-center select"><p>Search</p></div>
-                <div>
-                    <%= form_tag(search_blogs_path, method: :get ) do %>
-                        <div class="text-center search-box">
-                            <%= select_tag(:option, options_for_select([["ユーザー名", "1"],["ブログタイトル", "2"]])) %>
-                            <%= text_field_tag :search %>
-                        </div>
-                        <div class="text-right">
-                            <%= submit_tag "検索", class: "btn btn-warning" %>
-                        </div>
-                    <% end %>
-                </div>
-            </div>
+		<div class="col-md-4">
+			<%= render 'blog_sidebar', tag_list: @tag_list, tag_lists: @tag_lists %>
 		</div>
 
-		<div class="col-xs-8">
+		<div class="col-md-8">
 			<div class="content-box">
 				<p class="text-center">
 					<% if @tag %>
@@ -37,28 +13,7 @@
 						ブログ記事一覧
 					<% end %>
 				</p>
-				<div class="blog-index">
-					<% @blogs.each do |blog| %>
-						<%= link_to blog_path(blog) do %>
-							<div class="row blog-item">
-								<div class="col-xs-4">
-									<%= attachment_image_tag blog.user, :profile_image, size: "300x250", fallback: 'no_image.png',size: "300x250", class: "content-image" %>
-								</div>
-								<div class="col-xs-6 col-xs-offset-2 blog-text-box">
-									<div class="text-center blog-user-name">
-										<p><%= blog.user.name %>さん</p>
-									</div>
-									<div class="text-center blog-content">
-										<p><%= blog.updated_at.strftime("%Y-%m-%d") %><br><br></p>
-										<p><%= blog.title %></p><br>
-										<p><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-   											<%= blog.favorites.count %> いいね</p>
-									</div>
-								</div>
-							</div>
-						<% end %>
-					<% end %>
-				</div>
+				<%= render 'blog_index', blogs: @blogs %>
 				<div class="text-center">
 					<%= paginate @blogs %>
 				</div>

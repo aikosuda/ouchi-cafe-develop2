@@ -7,7 +7,8 @@ class BlogsController < ApplicationController
   end
 
   def index
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(6)
+    @tag_lists = Tag.all
     @blogs = Blog.page(params[:page]).per(5)
   end
 
@@ -49,32 +50,34 @@ class BlogsController < ApplicationController
     else
       render :show
     end
-
   end
 
   def select
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(6)
+    @tag_lists = Tag.all
     @blogs = Blog.page(params[:page]).per(4)
   end
 
   def tag
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(6)
+    @tag_lists = Tag.all
     @tag = Tag.find_by(name: params[:name])
     @blogs = @tag.blogs.page(params[:page]).per(10)
     render :index
   end
 
   def search
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(6)
+    @tag_lists = Tag.all
     @search = params[:search]
     @user_or_title = params[:option]
     if @user_or_title == "1"
-        @users = User.search_blog(params[:search])
-        @users.each do |user|
-          @user_blogs = Blog.where(user_id: user.id).page(params[:page]).per(5)
-        end
+      @users = User.search_blog(params[:search])
+      @users.each do |user|
+        @user_blogs = Blog.where(user_id: user.id).page(params[:page]).per(5)
+      end
     else
-        @blogs = Blog.search_blog(params[:search]).page(params[:page]).per(5)
+      @blogs = Blog.search_blog(params[:search]).page(params[:page]).per(5)
     end
   end
 
@@ -83,5 +86,4 @@ class BlogsController < ApplicationController
   def blog_params
     params.require(:blog).permit(:title, :content)
   end
-
 end

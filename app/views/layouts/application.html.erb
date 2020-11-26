@@ -4,6 +4,7 @@
     <title>OuchiCafe</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://kit.fontawesome.com/cfa43d2715.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -13,6 +14,7 @@
 
   <body>
     <div class="body-image"></div>
+
     <header class="navbar navbar-fixed-top header">
       <div class="container">
 
@@ -23,10 +25,9 @@
             <span>
               <%= link_to "おうちcafe", root_path, class: 'nav-item' %>
             </span>
-
           </div>
         </div>
-        <nav>
+        <nav class="nav-wrap">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li><%= link_to ' About', home_about_path, class: 'nav-item' %></li>
@@ -37,6 +38,7 @@
                   <i class="fas fa-circle header-notification"></i>
                 <% end %>
               </li>
+              <li><%= link_to ' Contact', new_contact_path, class: 'nav-item' %></li>
               <li><%= link_to ' logout', destroy_user_session_path, method: :delete, class: 'nav-item' %></li>
             <% else %>
               <li><%= link_to ' About', home_about_path, class: 'nav-item' %></li>
@@ -49,6 +51,13 @@
           </ul>
         </nav>
 
+        <div id="hm-icon">
+          <a class="menu-trigger" href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+        </div>
       </div>
     </header>
 
@@ -62,7 +71,7 @@
     <main>
         <%= yield %>
     </main>
-    <footer class="footer">
+    <footer class="text-center footer">
       Copyright © OuchiCafe Inc. All Rights Reserved.
     </footer>
   </body>

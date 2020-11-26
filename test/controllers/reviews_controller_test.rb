@@ -25,5 +25,4 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
     get reviews_select_url
     assert_response :success
   end
-
 end
