@@ -13,30 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "froala_editor.min";
-@import "froala_style.min";
-@import 'plugins/char_counter.min.css';
-@import 'plugins/code_view.min.css';
-@import 'plugins/colors.min.css';
-@import 'plugins/emoticons.min.css';
-@import 'plugins/file.min.css';
-@import 'plugins/fullscreen.min.css';
-@import 'plugins/image_manager.min.css';
-@import 'plugins/image.min.css';
-@import 'plugins/line_breaker.min.css';
-@import 'plugins/quick_insert.min.css';
-@import 'plugins/table.min.css';
-@import 'plugins/video.min.css';
-@import 'font-awesome-sprockets';
-@import 'font-awesome';
+@import "summernote-bs4";
+@import "summernote-custom-theme.min";
+@import "font-awesome";
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
+
 .clearfix:after{
  	content:"";
 	clear: both;
@@ -51,7 +35,7 @@ body {
 	background-color: #dcdcdc;
 	font-family: 'Open Sans', sans-serif;
 }
-h2, h3, h4, h5, p {
+h2, h3, h4, h5 {
 	color: #663300;
 }
 
@@ -158,6 +142,9 @@ h2, h3, h4, h5, p {
 	padding: 2px;
 	background: linear-gradient(transparent 60%, #996666);
 }
+.content-box span {
+	padding-left: 50px;
+}
 .content-item-box {
 	border-radius: 30px;
 	display: flex;
@@ -174,7 +161,8 @@ h2, h3, h4, h5, p {
 }
 .content-review-image {
 	border-radius: 30px;
-	margin: 10px 5px;
+	margin: 10px;
+	max-width: 80%;
 }
 .content-blog-image {
 	border-radius: 50%;
@@ -328,6 +316,7 @@ h2, h3, h4, h5, p {
 	padding-top: 30px;
 	padding-left: 35px;
 	padding-bottom: 20px;
+	max-width: 90%;
 }
 .review-name {
 	color: #fff;
@@ -363,6 +352,7 @@ h2, h3, h4, h5, p {
 	padding-top: 20px;
 	padding-left: 30px;
 	padding-bottom: 10px;
+	max-width: 90%;
 }
 .search-box {
 	padding-top: 10px;
@@ -556,7 +546,7 @@ h2, h3, h4, h5, p {
 	color: #663300;
 	font-weight: 700;
 }
-.new-post h4, h5, p{
+.new-post h4, h5{
 	color: #663300;
 }
 .new-post span {
@@ -794,8 +784,8 @@ h2, h3, h4, h5, p {
 	font-size: 15px;
 }
 
-/* タブレット端末（768px）以下　*/
-@media screen and (max-width:768px) {
+/* タブレット端末（992px）以下　*/
+@media screen and (max-width:992px) {
 
 	.container-padding {
 		padding: 80px 20px;
@@ -976,11 +966,15 @@ h2, h3, h4, h5, p {
 	.profile-box {
 		padding-bottom: 0;
 	}
+	/* マイページ　*/
+	.mypage-review-item {
+		padding-right: 30px;
+	}
 
 }
 
-/* スマートフォンサイズ（425px）以下　*/
-@media screen and (max-width:425px) {
+/* スマートフォンサイズ（768px）以下　*/
+@media screen and (max-width:768px) {
 	.alert {
 		position: absolute;
 		top: 50px;
@@ -1014,6 +1008,7 @@ h2, h3, h4, h5, p {
 	}
 	.content-review-image {
 		margin: 20px 0;
+		max-width: none;
 	}
 
 	.content-blog-image {
@@ -1047,6 +1042,7 @@ h2, h3, h4, h5, p {
 		padding-top: 0px;
 		padding-left: 0px;
 		padding-bottom: 0px;
+		max-width: none;
 	}
 	.review-name {
 		margin-top: 10px;
@@ -1069,6 +1065,7 @@ h2, h3, h4, h5, p {
 		padding-top: 0px;
 		padding-left: 0px;
 		padding-bottom: 0px;
+		max-width: none;
 	}
 
 	/* レビュー詳細　*/
@@ -1165,8 +1162,8 @@ h2, h3, h4, h5, p {
 	}
 
     .mypage-review-image {
-    	width: 70px;
-    	height: 70px;
+    	width: 60px;
+    	height: 45px;
     }
     .mypage-text-box h4, h5{
     	font-size: 10px;
